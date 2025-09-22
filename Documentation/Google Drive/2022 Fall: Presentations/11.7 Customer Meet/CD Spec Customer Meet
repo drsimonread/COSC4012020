@@ -1,0 +1,145 @@
+# CD Spectrometer 11/7 Presentation
+
+# Fall 2022
+
+```
+Legacy Code Maintenance and Upgrade
+```
+
+## Agenda ● Introductions^
+
+```
+● Progress Reports
+```
+```
+● Project Direction
+```
+```
+● Question Session
+```
+
+## Project Lead ● Eythan Jenkins^
+
+
+## Quality
+
+## Assurance
+
+## Team (QA)
+
+```
+● Matt Boddicker
+```
+```
+● Gavin McDonald
+```
+```
+● Marian Marteja
+```
+```
+● Victor Riley
+```
+```
+● Liam Pratt
+```
+```
+● Jordan Reece
+```
+
+## Research and
+
+## Development
+
+## Team (R&D)
+
+```
+● Jack Eskay
+```
+```
+● Andrew Kivrak
+```
+```
+● Sosan Wahid
+```
+```
+● William Capon
+```
+```
+● Adam Shaw
+```
+
+
+## System
+
+## Operations and
+
+## Maintenance
+
+## Team (SysOps)
+
+```
+● Leon Carrington
+```
+```
+● Clifford Toledo
+```
+
+### SysOps
+
+
+### R&D
+
+
+#### Progress Goals
+
+- Commented all .py files
+- Relayed commenting to Q&A
+    document
+- Created chart to show .py file
+    connections
+- Began to install docker
+    - Have docker installed and running
+       correctly on all of teams computers
+    - Begin debugging and fixing problems
+       with website
+    - Continue to work with Q&A on proper
+       documentation and commenting in our
+       work
+
+
+### QA
+
+
+### Project
+
+### Lead
+
+```
+● Scheduling and Communication
+```
+```
+● Supplementing Resources
+```
+```
+● Coordinating Teams
+```
+
+## Project
+
+## Direction
+
+```
+● Documentation and
+Tracing
+```
+```
+● Debugging and Testing
+```
+```
+● OIT, Docker, and
+Re-Deployment
+```
+
+### Questions?
+
+

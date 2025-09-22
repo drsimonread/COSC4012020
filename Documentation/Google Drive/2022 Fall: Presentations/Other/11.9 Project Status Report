@@ -1,0 +1,175 @@
+**11/9 Project Status Report
+FA 2022**
+Greenwell Wordpress Archiving Solution
+-and-
+CD Spectrometer Legacy Code Maintenance
+
+
+## Overall Structure and Schedule
+
+      - 11/7 Sunday Monday Tuesday Wednesday Thursday Friday Saturday
+-
+-
+- 27 28 29 30 12/1
+   -
+      - 11/7 Sunday Monday Tuesday Wednesday Thursday Friday Saturday
+-
+-
+- 27 28 29 30 12/1
+   -
+
+
+**Greenwell
+Sunday Monday Tuesday Wednesday Thursday Friday Saturday**
+11/7 8 9 10 11 12
+13 14 15 16 17 18 19
+20 **_21_** 22 23 24 25 26
+27 28 29 30 12/1 2 3
+4 5 6 **_7_** 8 9 10
+Log-in / Content Copy / User Manual
+File Share / Test Procedures
+Testing/ Debugging/ ADA/ Content Match
+Tidying / User Manual / Deployment
+
+
+**CD Spectrometer
+Sunday Monday Tuesday Wednesday Thursday Friday Saturday**
+11/7 8 9 10 11 12
+13 14 15 16 17 18 19
+20 21 22 23 24 25 26
+27 **_28_** 29 30 12/1 2 3
+4 5 6 7 8 9 10
+Commenting / Tracing
+Debugging / Unit Testing / STP
+Debugging/ System Testing
+Tidying / Deployment
+
+
+**Greenwell Archiving
+Solution**
+
+
+# R&D
+
+**Sunday Monday Tuesday Wednesday Thursday Friday Saturday**
+11/7 8 9 10 11 12
+13 14 15 16 17 18 19
+20 21 22 23 24 25 26
+27 28 29 30 12/1 2 3
+4 5 6 7 8 9 10
+Log-in Complete
+Fileshare Complete
+Debugging/ Content Matching
+Flexible Fulfillment/ Deployment
+
+
+
+# QA
+
+**Sunday Monday Tuesday Wednesday Thursday Friday Saturday**
+11/7 8 9 10 11 12
+13 14 15 16 17 18 19
+20 21 22 23 24 25 26
+27 28 29 30 12/1 2 3
+4 5 6 7 8 9 10
+User Manual Started
+STP/ Traceability Matrix
+ADA Check / Test Results Document
+User Manual Finalized
+
+
+
+# SysOps
+
+**Sunday Monday Tuesday Wednesday Thursday Friday Saturday**
+11/7 8 9 10 11 12
+13 14 15 16 17 18 19
+20 21 22 23 24 25 26
+27 28 29 30 12/1 2 3
+4 5 6 7 8 9 10
+Green/Blue How To
+Content Copying
+Documenting the above
+Flexible Fulfillment/ Deployment
+
+
+**Database**
+Live
+Site
+Dev Site
+Population
+greenwellfoundation.org
+**_Before Deployment_**
+
+
+**Database**
+Old Site Live
+Site
+Population
+greenwellfoundation.org
+**_At Deployment_**
+
+
+**Database**
+Old Site Live
+Site
+Population
+greenwellfoundation.org
+**_Software Failure_**
+
+
+**CD Spectrometer
+Maintenance**
+
+
+# R&D
+
+**Sunday Monday Tuesday Wednesday Thursday Friday Saturday**
+11/7 8 9 10 11 12
+13 14 15 16 17 18 19
+20 21 22 23 24 25 26
+27 28 29 30 12/1 2 3
+4 5 6 7 8 9 10
+Detail Comment Headings
+Debugging / Unit Testing
+Debugging
+Tidying / Deployment
+
+
+
+
+
+
+
+
+
+# QA
+
+**Sunday Monday Tuesday Wednesday Thursday Friday Saturday**
+11/7 8 9 10 11 12
+13 14 15 16 17 18 19
+20 21 22 23 24 25 26
+27 28 29 30 12/1 2 3
+4 5 6 7 8 9 10
+Tracing
+Unit Testing / STP for System
+System Testing
+Tidying / Deployment
+
+
+
+
+# SysOps
+
+**Sunday Monday Tuesday Wednesday Thursday Friday Saturday**
+11/7 8 9 10 11 12
+13 14 15 16 17 18 19
+20 21 22 23 24 25 26
+27 28 29 30 12/1 2 3
+4 5 6 7 8 9 10
+Docker Showcase
+Options for Linux/Ubuntu
+Emulate Environment Testing
+OIT Deployment
+
+

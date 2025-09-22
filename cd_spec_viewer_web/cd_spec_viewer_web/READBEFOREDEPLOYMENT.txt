@@ -1,0 +1,24 @@
+There are multiple files and settings that need to be updated before CDSpec
+goes live, and they are listed below. Many of the current login and gmail
+settings are for testing and development purposes only.
+
+This includes the creation of a special gmail account that will be used 
+for setting up Sign In with Google settings and sending confirmation and
+error email configuration
+
+settings.py needs to be updated, read the top of the file for more information
+
+The django admin needs to be updated with the following information from the
+new gmail account and misc changes
+
+the "sites" tab neeeds to be updated with the deployed site URL
+the "social applications" tab needs to have the "secret id",
+"client id" and "chosen sites" updated to reflect the new id's from
+the gmail account, and the new site added under the sites tab
+
+The special gmail will need to have a Google Cloud Console account setup
+where you will need to setup "Credentials" and "OAuth Consent Screen" located
+under the "API's and Services" tab
+
+
+

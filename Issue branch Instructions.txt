@@ -1,0 +1,24 @@
+Here are the instructions for making a new branch PER ISSUE in your GitHub repository:
+1. **Navigate to Your Repository**
+   - Go to your repository on GitHub: [swbn1/CDSpecCollab_COSC4012020-FA24](https://github.com/swbn1/CDSpecCollab_COSC4012020-FA24).
+   - Open your terminal (on macOS or Linux) or Command Prompt (on Windows).
+
+2. **Clone the Repository (if not already done)**
+   - If you haven't cloned the repository to your local machine, do so: (If you are writing code you probably have this)
+     git clone https://github.com/swbn1/CDSpecCollab_COSC4012020-FA24.git
+     cd CDSpecCollab_COSC4012020-FA24
+
+3. **Create a New Branch**
+   - To create a new branch, use the `git checkout -b`followed by the name of your issue with your name
+     git checkout -b the-name-of-your-issue-Gus
+
+After you fix your issue, this is how you will push it back to the main
+     git add .
+     git commit -m "Fixed this issue: [This is a short discription of what i fixed]"
+     git push origin the-name-of-your-issue-Gus
+
+After this you will need to do a pull request for the push
+   - Go to your repository on GitHub.
+   - You should see a prompt to create a pull request for the newly pushed branch. Click on the "Compare & pull request" button.
+   - Fill in the details for the pull request, making sure to reference the issue number in the description (e.g., "Fixes #5").
+   - Submit the pull request for review.

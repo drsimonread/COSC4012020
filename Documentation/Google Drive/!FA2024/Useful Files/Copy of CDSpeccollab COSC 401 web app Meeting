@@ -1,0 +1,64 @@
+# CDSpeccollab COSC 401 web app Meeting
+
+# 2022-09-
+
+```
+Date : Sep 22 2022
+```
+```
+Attendees : Mark Fleming Leon Carrington Sr.
+```
+```
+Conference Info : Google Meet
+```
+```
+Agenda :
+```
+```
+Last Meeting Follow-up
+New Business
+```
+```
+Notes
+```
+**Web Front End**
+
+```
+IP 40.76.241.
+nginX proxy
+django web application server
+```
+**Database**
+
+```
+52.152.168.
+PostgreSQL database
+```
+
+## Steps:
+
+```
+1. User list for access.
+2. I'll create user accounts on both servers.
+3. Down source code repository for review.
+4. Update the server to late OS versions
+5. Hand over.
+```
+## Goals for semester
+
+```
+Optimization :
+Action Items (Client) ::
+Get list of users that need access to the servers.
+After gaining access, assess who needs access to which parts of the code repository
+Action Items (Me/Department) :
+Update operating system (both servers)
+Disable old user accounts
+Add new user accounts
+Setup regular meetings to talk with development team.
+```
+- Deploy System
+- Fix login system
+- ssh access on campus
+
+

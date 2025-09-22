@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, RedirectView, UpdateView
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 User = get_user_model()
 
@@ -48,3 +49,14 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
 
 user_redirect_view = UserRedirectView.as_view()
+
+
+#def login_view(request):
+#        if request.method == "POST":
+#            form = AuthenticationForm(data=request.POST)
+#            if form.is_valid():
+#                #LOGIN HERE
+#                return redirect("posts:list")
+#        else:
+#            form = AuthenticationForm()
+#        return render(request, "users/login.html", { "form" : form })

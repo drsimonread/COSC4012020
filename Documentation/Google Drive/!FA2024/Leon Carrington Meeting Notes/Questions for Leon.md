@@ -1,0 +1,12 @@
+- How does the software work in terms of setup and deployment  
+- How to deploy changes to the website  
+- Possible to run a test version of the website for testing purposes  
+- How to change dependencies to updated ones  
+- Deployed version?  
+  - How to launch  
+- Process for getting the Django files linked to Docker  
+- How to push changes to the official website  
+- Leads on issues with the software  
+- Why docker  
+- Why Nginx  
+- What is cookie cutter and what does it do

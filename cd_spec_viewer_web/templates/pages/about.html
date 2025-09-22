@@ -1,62 +1,64 @@
-{% extends "base.html" %}
+{% extends "base.html" %} <!-- Extend the base template for the page layout -->
 
 {% block content %}
 <html>
     <head>
-    <title>CD Spec Viewer About Page</title>
+    <title>CD Spec Viewer About Page</title> <!-- Title of the page -->
     <style>
     .Instruction {
-        text-align: justify;
-        background-color: lightblue;
+        text-align: justify; /* Justify text alignment for instructions */
+        background-color: lightblue; /* Light blue background for the instruction section */
     }
     </style>
     </head>
     <body>
-        <h1 sytle ="text-align:center">CD Spec Viewer About Page</h1>
-        <p sytle ="text-align:center">This is a spectrometer project by Dr. Sherrer.</p>
-        <p sytle ="text-align:center">This project was developed by students taking the COSC Capstone course at St. Mary's College of Maryland during the Fall 2020 and Spring 2021 semesters. We have created this website for people to upload and view their CD Spectrometer runs.</p>
-        <div class ="Instruction">
-            <h3 style ="font-size:18px">Viewing CD Spectrometer runs:</h3>
-            <p>A table view listing all of the runs can be found by clicking on the <a href="{% url 'cdspec:index' %}">Index</a> tab on the top of the page.</p>
-            <p>You can see a detailed view of each run by clicking on the name on the first column of the table.</p>
-            <p>If you want to graph multiple runs at once, you must select multiple runs by clicking on the rows of the table.</p>
+        <h1 sytle ="text-align:center">CD Spec Viewer About Page</h1> <!-- Page header (with a typo in the 'style' attribute) -->
+        <p sytle ="text-align:center">This is a spectrometer project by Dr. Sherrer.</p> <!-- Introductory text (with a typo in the 'style' attribute) -->
+        <p sytle ="text-align:center">This project was developed by students taking the COSC Capstone course at St. Mary's College of Maryland during the Fall 2020 and Spring 2021 semesters. We have created this website for people to upload and view their CD Spectrometer runs.</p> <!-- Description of the project (with a typo in the 'style' attribute) -->
+        <div class ="Instruction"> <!-- Instruction section -->
+            <h3 style ="font-size:18px">Viewing CD Spectrometer runs:</h3> <!-- Heading for viewing CD spectrometer runs -->
+            <p>A table view listing all of the runs can be found by clicking on the <a href="{% url 'cdspec:index' %}">Index</a> tab on the top of the page.</p> <!-- Link to the index page -->
+            <p>You can see a detailed view of each run by clicking on the name on the first column of the table.</p> <!-- Instruction for detailed view -->
+            <p>If you want to graph multiple runs at once, you must select multiple runs by clicking on the rows of the table.</p> <!-- Instructions for graphing multiple runs -->
+
             {% if perms.cdspec.can_edit %}
+            <!-- Check if the user has permission to edit -->
             <p>Additionally, as an Administrator, you have the ability to edit/delete individual runs. The Administrator controls are located at the bottom of the detailed view page.</p>
-            {% endif %}
+            {% endif %} <!-- End permission check for editing -->
 
+            <h3 style ="font-size:18px">Uploading runs to the database:</h3> <!-- Heading for uploading runs -->
+            <p>If you want to upload a CD spectrometer run, click on the upload button on the table view page.</p> <!-- Instruction for uploading runs -->
+            <p>This will lead you to the create page, where you will need to fill out various information and provide a properly formatted .csv file pertaining to the run.</p> <!-- Details on uploading process -->
+            <p>Once this is done, you can then click the submit button. You will be redirected to a detailed view of that run that includes an interactive graph.</p> <!-- After submitting, user is redirected -->
 
-            <h3 style ="font-size:18px">Uploading runs to the database:</h3>
-            <p>If you want to upload a CD spectrometer run, click on the upload button on the table view page.</p>
-            <p>This will lead you to the create page, where you will need to fill out various information and provide a properly formatted .csv file pertaining to the run.</p>
-            <p>Once this is done, you can then click the submit button. You will be redirected to a detailed view of that run that includes an interactive graph.</p>
+            <h3 style ="font-size:18px">Creating an account:</h3> <!-- Heading for creating an account -->
+            <p>You can create an account by clicking on <a {% if not request.user.is_authenticated %} href="{% url 'account_signup' %}" {% endif %}> Sign Up</a> at the top of the page.</p> <!-- Link to sign-up page if not authenticated -->
+            <p>This will lead you to a sign up page, where you will need to provide an email address and password.</p> <!-- Account sign-up instructions -->
+            <p>You must then go into your email and click on the verification link in order to verify your account before being authorized.</p> <!-- Verification step -->
+            <p>Alternatively, if you have an SMCM email, you can go straight to the <a {% if not request.user.is_authenticated %} href="{% url 'account_login' %}" {% endif %}>login</a> page and log in using your Google account.</p> <!-- Google login option for SMCM email users -->
 
-            <h3 style ="font-size:18px">Creating an account:</h3>
-            <p>You can create an account by clicking on <a {% if not request.user.is_authenticated %} href="{% url 'account_signup' %}" {% endif %}> Sign Up</a> at the top of the page.</p>
-            <p>This will lead you to a sign up page, where you will need to provide an email address and password.</p>
-            <p>You must then go into your email and click on the verification link in order to verify your account before being authorized.</p>
-            <p>Alternatively, if you have an SMCM email, you can go straight to the <a {% if not request.user.is_authenticated %} href="{% url 'account_login' %}" {% endif %}>login</a> page and log in using your Google account.</p>
+            <h3 style ="font-size:18px">Signing in:</h3> <!-- Heading for signing in -->
+            <p>You can sign in to your account by clicking on <a {% if not request.user.is_authenticated %} href="{% url 'account_login' %}" {% endif %}>Sign In</a> at the top of the page.</p> <!-- Link to sign-in page -->
+            <p>If you have an SMCM email, then you can simply sign in with Google.</p> <!-- Sign in with Google for SMCM users -->
+            <p>Otherwise, your login username will be the beginning part of the your email preceding "@example.com".</p> <!-- Non-SMCM users sign in with part of email -->
+            <p>You need to enter the verified password that you created for your account on the website.</p> <!-- Password entry requirement -->
+            <p>You can allow the website to remember your account if you like; this part is optional.</p> <!-- Optional "remember me" feature -->
 
-            <h3 style ="font-size:18px">Signing in:</h3>
-            <p>You can sign in to your account by clicking on <a {% if not request.user.is_authenticated %} href="{% url 'account_login' %}" {% endif %}>Sign In</a> at the top of the page.</p>
-            <p>If you have an SMCM email, then you can simply sign in with Google.</p>
-            <p>Otherwise, your login username will be the beginning part of the your email preceding "@example.com".</p>
-            <p>You need to enter the verified password that you created for your account on the website.</p>
-            <p>You can allow the website to remember your account if you like; this part is optional.</p>
-
-            <h3 style ="font-size:18px">Account Management:</h3>
-            <p>If you are logged in, you can go to <a {% if request.user.is_authenticated %} href="{% url 'users:detail' request.user.username  %}" {% endif %}>My Profile</a> to manage your account.</p>
-            <p>You have the option of adding/removing/verifying your email address(es) as well as changing your primary email.</p>
-            <p>If you have not already done so, you can also connect your existing account to your SMCM account.</p>
+            <h3 style ="font-size:18px">Account Management:</h3> <!-- Heading for account management -->
+            <p>If you are logged in, you can go to <a {% if request.user.is_authenticated %} href="{% url 'users:detail' request.user.username  %}" {% endif %}>My Profile</a> to manage your account.</p> <!-- Link to profile page for authenticated users -->
+            <p>You have the option of adding/removing/verifying your email address(es) as well as changing your primary email.</p> <!-- Email management options -->
+            <p>If you have not already done so, you can also connect your existing account to your SMCM account.</p> <!-- Option to connect to SMCM account -->
 
             {% if request.user.is_staff %}
-            <h3 style ="font-size:18px">Admin Site Information: </h3>
-            <p>You can visit the admin site by clicking on <a href="/admin/">Admin</a> at the top of the page.</p>
-            <p>This will take you to the Admin Site where you can view database information about the CD spectrometer runs as well as all of the users and their connected emails.</p>
-            <p>You also have the ability to go to each individual user and change their group.</p>
-            <p>Currently, you can set a user as an Administrator and Student (if you see this block, you are a Master Administrator with staff status).</p>
-            <p>An Administrator has the power to view all runs in the database as well as the ability to upload, edit, and delete any run.</p>
-            <p>A student can upload runs and view any non-public runs marked "Visible to Student". However, they cannot edit or delete runs.</p>
-            {% endif %}
+            <!-- Check if the user is staff -->
+            <h3 style ="font-size:18px">Admin Site Information: </h3> <!-- Heading for admin site info -->
+            <p>You can visit the admin site by clicking on <a href="/admin/">Admin</a> at the top of the page.</p> <!-- Link to the admin site -->
+            <p>This will take you to the Admin Site where you can view database information about the CD spectrometer runs as well as all of the users and their connected emails.</p> <!-- Admin view details -->
+            <p>You also have the ability to go to each individual user and change their group.</p> <!-- Admin ability to modify user groups -->
+            <p>Currently, you can set a user as an Administrator and Student (if you see this block, you are a Master Administrator with staff status).</p> <!-- Admin permissions info -->
+            <p>An Administrator has the power to view all runs in the database as well as the ability to upload, edit, and delete any run.</p> <!-- Admin permissions -->
+            <p>A student can upload runs and view any non-public runs marked "Visible to Student". However, they cannot edit or delete runs.</p> <!-- Student permissions -->
+            {% endif %} <!-- End staff check -->
 
         </div>
     </body>

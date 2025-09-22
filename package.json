@@ -1,0 +1,22 @@
+{
+  "name": "cdspeccollab_cosc4012020-fa24",
+  "version": "1.0.0",
+  "description": "Unknown",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swbn1/CDSpecCollab_COSC4012020-FA24.git"
+  },
+  "keywords": [
+    "magic"
+  ],
+  "author": "Gus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/swbn1/CDSpecCollab_COSC4012020-FA24/issues"
+  },
+  "homepage": "https://github.com/swbn1/CDSpecCollab_COSC4012020-FA24#readme"
+}

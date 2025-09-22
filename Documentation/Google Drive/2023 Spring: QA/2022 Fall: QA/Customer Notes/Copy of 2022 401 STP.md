@@ -1,0 +1,405 @@
+
+
+| Circular Dichroism Spectrometer Software Test Plan Version 1.1 11-9-22 401 Quality Assurance & Documentation Team    |
+| ----- |
+
+**Table of Contents**
+
+[**1\. Introduction**](#1.-introduction)	**[1](#1.-introduction)**
+
+[1.1 Purpose](#1.1-purpose)	[1](#1.1-purpose)
+
+[1.2 Scope](#1.2-scope)	[1](#1.2-scope)
+
+[1.3 Definitions, Acronyms, and Abbreviations](#1.3-definitions,-acronyms,-and-abbreviations)	[1](#1.3-definitions,-acronyms,-and-abbreviations)
+
+[1.4 Document References](#1.4-document-references)	[1](#1.4-document-references)
+
+[1.5 System Overview](#1.5-system-overview)	[1](#1.5-system-overview)
+
+[**2\. Requirements to Be Tested**](#2.-requirements-to-be-tested)	**[2](#2.-requirements-to-be-tested)**
+
+[**3\. Testing Approach**](#3.-testing-approach)	**[2](#3.-testing-approach)**
+
+[3.1 White Box Testing](#3.1-white-box-testing)	[2](#3.1-white-box-testing)
+
+[3.2 Black Box Testing](#3.2-black-box-testing)	[2](#3.2-black-box-testing)
+
+[**4\. Test Process**](#4.-test-process)	**[3](#4.-test-process)**
+
+[4.1 Unit Testing](#4.1-unit-testing)	[3](#4.1-unit-testing)
+
+[4.2 System Testing](#4.2-system-testing)	[3](#4.2-system-testing)
+
+[**5\. Reporting and Corrective Action**](#5.-reporting-and-corrective-action)	**[3](#5.-reporting-and-corrective-action)**
+
+[**6\. Test Environment**](#6.-test-environment)	**[3](#6.-test-environment)**
+
+[6.1 Unit Testing Environment](#6.1-unit-testing-environment)	[3](#6.1-unit-testing-environment)
+
+[6.2 System Testing Environment](#6.2-system-testing-environment)	[3](#6.2-system-testing-environment)
+
+[**7\. Test Procedures**](#7.-test-procedures)	**[3](#7.-test-procedures)**
+
+[7.1 Legacy Tests](#7.1-legacy-tests)	[3](#7.1-legacy-tests)
+
+[7.2 Unit Tests](#7.2-unit-tests)	[8](#7.2-unit-tests)
+
+[7.3 System Tests](#7.3-system-tests)	[8](#7.3-system-tests)
+
+**Revision History**
+
+| Date | Version | Description | Author(s) |
+| :---: | :---: | :---: | :---: |
+|  10/23/2022 | 1.0  | Created STP Template | Eythan Jenkins |
+| 11/9/2022 | 1.1 | Added Legacy, Unit, and System Test Bases | Eythan Jenkins, CD Spec QA Team |
+
+# **1\. Introduction** {#1.-introduction}
+
+## **1.1 Purpose** {#1.1-purpose}
+
+The purpose of this Software Test Plan (STP) is to define all testing procedures that shall be implemented in the testing of the Circular Dichroism Spectrometer (CD Spec) application.
+
+## **1.2 Scope** {#1.2-scope}
+
+The purpose of this STP document is to detail any and all test cases associated with the CD Spec application. All plans and specific steps that will be taken during the testing process shall be documented here. This document will be utilized by both the Research and Development (R\&D) and Quality Assurance (Q\&A) teams to test all possible cases within the scope of the CD Spec application.
+
+## **1.3 Definitions, Acronyms, and Abbreviations** {#1.3-definitions,-acronyms,-and-abbreviations}
+
+| CD Spec | Circular Dichroism Spectrometer |
+| :---- | :---- |
+| Q\&A | Quality Assurance |
+| R\&D | Research and Development |
+| SRS STP UM | Software Requirements Specification Software Test Plan User Management |
+|  |  |
+|  |  |
+
+## **1.4 Document References** {#1.4-document-references}
+
+## **1.5 System Overview** {#1.5-system-overview}
+
+The Circular Dichroism Spectrometer (CD Spec Spec) software shall be a functional database housed within a constructed web application. This software shall be utilized by both instructors and students to monitor spectral changes in structure between protein-DNA interactions. Users of this web application shall be able to create three forms of user accounts. These accounts include a public user account, a student user account, and an administrator account, each of which have specific abilities assigned to them as well as some limitations imposed. A public user account may only view protein-DNA data submitted by account types with more permissions. Public accounts may not edit data in any way or submit data themselves. A student user account may view and submit protein-DNA data. Once submitted, the student account may not edit the data in any way. An administrator account has full permissions, meaning that this account type may perform all functions of the database, including: viewing the data within the database, uploading and submitting of user data, as well as editing of any data contained within the database. 
+
+---
+
+# **2\. Requirements to Be Tested** {#2.-requirements-to-be-tested}
+
+Requirements to be tested are defined within the Software Requirements Specifications (SRS) document, currently at version 3.0. The SRS shall be updated in future to reflect any changes made by the client or the Research and Development team over the course of this project’s duration.
+
+\-Login (SRS 2.1.1)  
+\-User Creation (SRS 2.2)  
+\-Password Recovery (SRS 2.3)  
+\-Page Navigation  
+\-Database Search Engine (SRS 2.5.2)  
+\-Data Comparison (SRS 2.5.4)  
+\-Data Upload (SRS 2.5.5)  
+\-Data Editing (SRS 2.5.5.1)
+
+---
+
+# **3\. Testing Approach** {#3.-testing-approach}
+
+## **3.1 White Box Testing** {#3.1-white-box-testing}
+
+* Database functionality
+
+## **3.2 Black Box Testing** {#3.2-black-box-testing}
+
+Members of the CD Spec team shall test the functionality of the CD Spec application. The team will test all possible requirements that have been implemented into the application. Tests will include higher priority/core functions such as:
+
+* Application Access (in various testing environments/browsers)  
+* Account Creation  
+* Data Search  
+* Data Upload, valid and invalid files  
+* Data Graphing
+
+
+---
+
+# **4\. Test Process** {#4.-test-process}
+
+## **4.1 Unit Testing**   {#4.1-unit-testing}
+
+Testers will test each function of the CD Spec application individually to ensure that they function correctly. Unit testing is the first stage of testing and will be done to ensure that the next stage of testing, the integration stage, can combine the pieces of the program together into a more finalized product. Unit testing will be done primarily to ensure that the application is able to at least run and display the implemented interfaces.
+
+## **4.2 System Testing** {#4.2-system-testing}
+
+The application at this stage will be tested within different testing environments by several different members of the team. The application must function in different web browsers as well as by different users.
+
+---
+
+# **5\. Reporting and Corrective Action** {#5.-reporting-and-corrective-action}
+
+Errors found will be recorded on the error log document. The errors will then be directly reported to the development team as well as the project leader. From there the QA team will work on finding and reporting more errors while the development team resolves the errors that we have reported.
+
+---
+
+# **6\. Test Environment** {#6.-test-environment}
+
+## **6.1 Unit Testing Environment** {#6.1-unit-testing-environment}
+
+Unit Testing shall be performed using Docker container to ensure all dependencies needed for the software are present.
+
+## **6.2 System Testing Environment** {#6.2-system-testing-environment}
+
+System testing environment shall be performed in a browser or multiple browsers as specified by the tests that are being performed.  
+---
+
+# **7\. Test Procedures** {#7.-test-procedures}
+
+## 	**7.1 Legacy Tests** {#7.1-legacy-tests}
+
+**\<\>...................................................................................................................................\<\>**  
+**Test Number:** LEG \- 01  
+**Author:** Eythan Jenkins  
+**Date:** 11/9/2022  
+**Revision:** 2.0  
+**Test Purpose:** To reexamine and evaluate the tests of the previous semester to make sure our maintenance doesn’t disrupt previous test procedures.  
+This test is intended to test the functionality of the user registration and login menus.  
+**Test Procedures:**
+
+1. A user with public level access will be added to the database through the registration page.  
+2. The team will attempt to log in using the newly created account’s credentials. Each account will be logged in multiple times to ensure that it persists in the database’s memory.  
+3. More accounts of the same access level will be created and logged in with to ensure that the database is capable of properly registering multiple users.  
+4. Steps 1 through 3 will then be repeated with student access level and administrator access level accounts.  
+   **Measure of Success:**  
+   All accounts should be able to use it for login, taking the user to the home page once the login is completed.  
+   
+
+**\<\>...................................................................................................................................\<\>**  
+**Test Number:** LEG-02  
+**Author:** QA Team  
+**Date:** 11/14/2022  
+**Revision:** 2.0  
+**Test Purpose:** This test is intended to test the functionality of password reset.  
+**Test Procedures:**
+
+1. Open the application within a web browser.  
+2. Click “login”  
+3. Click “forgot password”  
+4. Enter email address  
+5. Click “enter/send” (submit email address)
+
+   
+
+   **Measure of Success:**
+
+   The user should receive a forgotten password email from the application and should now be able to reset their password.
+
+**\<\>...................................................................................................................................\<\>**  
+**Test Number:** LEG-03  
+**Author:** QA Team  
+**Date:** 11/14/2022  
+**Revision:** 2.0  
+**Test Purpose:**  This test is intended to test the functionality of the application within several web browsers, including but not limited to: Google Chrome, Mozilla Firefox, Safari, and Microsoft Edge.  
+**Test Procedures:**
+
+1. Open a Google Chrome web browser  
+2. Enter the link to the CD Spec application, hit enter  
+3. Ensure that the application has opened and is displayed properly.  
+4. Open a Safari web browser  
+5. Enter the link to the CD Spec application, enter  
+6. Ensure that the application has opened and is displayed properly.  
+7. Open a Firefox browser  
+8. Enter the link to the CD Spec application, enter  
+9. Ensure that the application has opened and is displayed properly.  
+10. Open a Microsoft Edge web browser  
+11. Enter the link to the CD Spec application, enter  
+12. Ensure that the application has opened and is displayed properly.  
+    **Measure of Success:**  
+    The application should be opened successfully on various web browsers.
+
+**\<\>...................................................................................................................................\<\>**  
+**Test Number:** LEG-04  
+**Author:** QA Team  
+**Date:** 11/14/2022  
+**Revision:** 2.0  
+**Test Purpose:** This test is intended to test the functionality of the data upload function.  
+**Test Procedures:**
+
+1) Open the application with a web browser  
+2) Login to account  
+3) Select “upload”  
+4) Select data file to upload  
+5) Upload the file, confirm that the file has successfully been uploaded by the application  
+   **Measure of Success:** The data file has been successfully uploaded to the database and can be accessed.  
+   
+
+**\<\>...................................................................................................................................\<\>**  
+**Test Number:** LEG-05  
+**Author:** QA Team  
+**Date:** 11/14/2022  
+**Revision:** 2.0  
+**Test Purpose:** This test is intended to test the functionality of the search engine.  
+**Test Procedures:** 
+
+1) Open the application with a web browser  
+2) Login to account  
+3) Select “search”  
+4) Enter the desired file in the text field as well as any specifics (date, uploader, etc…)  
+5) Click “enter” (confirm)
+
+   
+
+   **Measure of Success:** The data file in the database that was searched for will be located and viewable by the user.
+
+   
+
+   
+
+**\<\>...................................................................................................................................\<\>**  
+**Test Number:** LEG-06  
+**Author:** xx  
+**Date:** \[DATE\]  
+**Revision:** 1.0  
+**Test Purpose:** This test is intended to test the functionality of an administrator account.   
+**Test Procedures:**
+
+1. Open the application with a web browser  
+2. Login to administrator account  
+3. Open the application in a web browser  
+4. Login to student account  
+5. Select “upload”, upload a data file to the database  
+6. Go back to homepage  
+7. Select “search”  
+8. Enter a file’s information to search, locate a file  
+9. Select “edit”, edit a file’s data within the database, confirm that the edit ability is functional  
+10. Validate that admin abilities are fully functional and unique to the administrator account  
+    **Measure of Success:** The administrator account has full access to all functions of the application, including editing, uploading, and searching files.  
+    
+
+**\<\>...................................................................................................................................\<\>**  
+**Test Number:** LEG-07  
+**Author:** QA Team  
+**Date:** 11/14/2022  
+**Revision:** 2.0  
+**Test Purpose:** This test is intended to test the functionality of a student account  
+**Test Procedures:**
+
+1) Open the application in a web browser  
+2) Login to student account  
+3) Select “upload”, upload a data file to the database  
+4) Go back to homepage  
+5) Select “search”  
+6) Enter a file’s information to search, locate a file  
+7) Go back to homepage  
+8) Confirm that the student account cannot edit anything within the database, only upload and search  
+     
+   **Measure of Success:** The student account does not have the ability to edit files within the database, but can upload files as well as search the database or existing files.  
+     
+   
+
+**\<\>...................................................................................................................................\<\>**  
+**Test Number:** LEG-08  
+**Author:** QA Team  
+**Date:** 11/14/2022  
+**Revision:** 2.0  
+**Test Purpose:** This test is intended to test the functionality of a public account.  
+**Test Procedures:**
+
+1) Open the application in a web browser  
+2) Login to a public account  
+3) Select “search”  
+4) Enter a file’s information to search, locate a file  
+5) Go back to homepage  
+6) Confirm that the public account cannot upload to the database or edit any files within.  
+   **Measure of Success:** The public account does not have the ability to upload or edit files, but can search for files already within the database.
+
+**\<\>...................................................................................................................................\<\>**  
+**Test Number:** LEG-09  
+**Author:** QA Team  
+**Date:** 11/14/2022  
+**Revision:** 2.0  
+**Test Purpose:** This test is intended to test the functionality of student account creation  
+**Test Procedures:**
+
+1. Open the application in a web browser  
+2. Login to an administrator account  
+3. Go through the steps to set up a new student account  
+4. Logout of the administrator account  
+5. Login to new student account  
+6. Confirm that the new student account has been created successfully  
+   **Measure of Success:**  
+   A CD Spec student account has successfully been created by a CD Spec administrator and can be accessed.  
+   
+
+## **7.2 Unit Tests** {#7.2-unit-tests}
+
+**\<\>...................................................................................................................................\<\>**  
+**Test Number:** UN-01  
+**Author:** xx  
+**Date:** //  
+**Revision:** 1.0  
+**Test Purpose:**   
+**Test Procedures:**
+
+**Measure of Success:**
+
+**\<\>...................................................................................................................................\<\>**
+
+## **7.3 System Tests** {#7.3-system-tests}
+
+**\<\>...................................................................................................................................\<\>**  
+**Test Number:** SYS-01  
+**Author:** Eythan Jenkins  
+**Date:** 11/9/2022  
+**Revision:** 1.0  
+**Test Purpose:** To test the login functionality via the Google log-in option as a Public User  
+**Test Procedures:**
+
+1) User will navigate to the SMCM CD Spectrometer website.  
+2) The user will select the “Sign in” option at the banner on the top of the webpage.  
+3) The user will arrive to the sign-in page, and select the blue hyperlink labeled “Google.”  
+4) The user will arrive to Google’s ‘oauth’ log-in, and select a Google Account not associated with the school.  
+5) The user should be denied access to logging in and not be able to proceed as a logged-in user.  
+   **Measure of Success:**  
+   The user should not be able to access the CD Spec with a Google account not associated with the school.
+
+**\<\>...................................................................................................................................\<\>**  
+**Test Number:** SYS-02  
+**Author:** Eythan Jenkins, [Mathias Boddicker](mailto:mboddicker@smcm.edu)  
+**Date:** 11/9/2022  
+**Revision:** 1.0  
+**Test Purpose:** To test the login functionality via the Google log-in option as a Student User  
+**Test Procedures:**
+
+1) User will navigate to the SMCM CD Spectrometer website.  
+2) The user will select the “Sign in” option at the banner on the top of the webpage.  
+3) The user will arrive to the sign-in page, and select the blue hyperlink labeled “Google.”  
+4) The user will arrive to Google’s ‘oauth’ log-in, and select their Google Account associated with the school.  
+5) The user should be able to log into the CD Spec as a student account  
+     
+   **Measure of Success:**  
+   The user will be able to log in to their student account.
+
+**\<\>...................................................................................................................................\<\>**  
+**Test Number:** SYS-03  
+**Author:** Eythan Jenkins, Mathias Boddicker  
+**Date:** 11/9/2022  
+**Revision:** 1.0  
+**Test Purpose:** To test the login functionality via the Google log-in option as a Admin User  
+**Test Procedures:**
+
+1. User will navigate to the SMCM CD Spectrometer website.  
+2. The user will select the “Sign in” option at the banner on the top of the webpage.  
+3. The user will arrive to the sign-in page, and select the blue hyperlink labeled “Google.”  
+4. The user will arrive to Google’s ‘oauth’ log-in, and select their Google Account associated with the school.  
+5. The user should be able to log into the CD Spec as an administrator account  
+     
+   **Measure of Success:**  
+   The user will be able to log in to their administrator account.
+
+**\<\>...................................................................................................................................\<\>**  
+**Test Number:** SYS-04  
+**Author:** xx  
+**Date:** \[DATE\]  
+**Revision:** 1.0  
+**Test Purpose:**   
+**Test Procedures:**
+
+**Measure of Success:**
+
+**\<\>...................................................................................................................................\<\>**
+
+**8\. Miscellaneous**:  
+

@@ -1,0 +1,149 @@
+# R&D guide
+
+## Software Dependencies
+
+### Github
+
+### Docker
+
+### Django
+
+### Getting started
+
+#### Software Startup Simulator
+
+
+# Github
+
+### Dependencies
+
+```
+https://desktop.github.com/
+```
+
+# Docker
+
+### Dependencies
+
+```
+https://docs.docker.com/get-docker/
+```
+
+# Docker Quick Start
+
+### Dependencies
+
+```
+docker run -d -p 80:80 docker/getting-started
+Run command below in command prompt to check installation
+```
+
+# Docker Quick Start
+
+### Dependencies
+
+```
+Navigate to docker
+Windows: bottom right hand menu
+```
+
+# Docker Quick Start
+
+### Dependencies
+
+```
+“Getting-started” container will auto-generate a random name
+Select open in browser icon
+```
+
+# Docker Quick Start
+
+### Dependencies
+
+```
+If browser loads “Getting started” page, install is successful
+```
+
+# Pull Application Repo
+
+### Dependencies
+
+```
+https://github.com/lhjamieson/COSC
+```
+
+# Pull Application Repo
+
+### Dependencies
+
+```
+https://github.com/lhjamieson/COSC
+```
+
+# Compose application
+
+### Dependencies
+
+```
+Run command below in command prompt to change directory
+cd documents\github\cosc4012020\cd_spec_viewer_web
+```
+
+# Compose application
+
+### Dependencies
+
+```
+Run command below in command prompt to build container
+docker-compose -f docker-compose.yml build
+```
+
+# Run application
+
+### Dependencies
+
+```
+Run command below in command prompt to run container
+docker-compose -f docker-compose.yml up
+```
+
+# Access application
+
+### Dependencies
+
+```
+Navigate to Docker GUI and start application
+```
+
+# Access application
+
+### Dependencies
+
+```
+Navigate to Docker GUI and start application
+```
+
+# Access application
+
+### Dependencies
+
+```
+Application will open in browser
+```
+
+# Django Tutorial
+
+### References
+
+```
+https://docs.djangoproject.com/en/3.1/intro/tutorial01/#creating-the-polls-app
+```
+
+# Cookiecutter Template
+
+### References
+
+```
+https://cookiecutter-django.readthedocs.io/en/latest/index.html
+```
+

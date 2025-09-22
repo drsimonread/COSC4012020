@@ -1,10 +1,19 @@
 {% extends "base.html" %}
-{% block title %}{% block head_title %}{% endblock head_title %}{% endblock title %}
+<!-- Extend the base template to reuse common layout elements -->
+
+{% block title %}
+    {% block head_title %}{% endblock head_title %}
+    <!-- Define a nested block for the page title -->
+{% endblock title %}
 
 {% block content %}
-<div class="row">
-  <div class="col-md-6 offset-md-3">
-    {% block inner %}{% endblock %}
-  </div>
-</div>
+    <!-- Main content block for the page -->
+    <div class="row">
+        <!-- Create a row for layout -->
+        <div class="col-md-6 offset-md-3">
+            <!-- Center the content in the middle of the page -->
+            {% block inner %}{% endblock %}
+            <!-- Nested block for specific page content -->
+        </div>
+    </div>
 {% endblock %}

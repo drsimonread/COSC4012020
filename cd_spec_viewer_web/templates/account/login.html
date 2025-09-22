@@ -1,48 +1,84 @@
 {% extends "account/base.html" %}
+<!-- Extend the base template for account-related pages -->
 
 {% load i18n %}
+<!-- Load the internationalization library for translations -->
 {% load account socialaccount %}
+<!-- Load custom template tags for account and social account management -->
 {% load crispy_forms_tags %}
+<!-- Load crispy forms library for form styling -->
 
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
-
-{% block inner %}
-
-<h1>{% trans "Sign In" %}</h1>
-
-{% get_providers as socialaccount_providers %}
-
-{% if socialaccount_providers %}
-<p>{% blocktrans with site.name as site_name %}Please sign in with one
-of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
-
-<div class="socialaccount_ballot">
-
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
-
-  <div class="login-or">{% trans 'or' %}</div>
-
-</div>
-
-{% include "socialaccount/snippets/login_extra.html" %}
-
-{% else %}
-<p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-{% endif %}
-
-<form class="login" method="POST" action="{% url 'account_login' %}">
-  {% csrf_token %}
-  {{ form|crispy }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-  <button class="primaryAction btn btn-primary" type="submit">{% trans "Sign In" %}</button>
-</form>
-
+{% block head_title %}
+    {% trans "Sign In" %}
+    <!-- Set the page title to "Sign In" -->
 {% endblock %}
 
+{% block inner %}
+    <!-- Main content block for the page -->
+
+    <h1>{% trans "Sign In" %}</h1>
+    <!-- Page heading -->
+
+    {% get_providers as socialaccount_providers %}
+    <!-- Retrieve the list of social account providers -->
+
+    {% if socialaccount_providers %}
+        <!-- If social account providers are available -->
+        <p>
+            {% blocktrans with site.name as site_name %}
+            Please sign in with one of your existing third party accounts. Or, 
+            <a href="{{ signup_url }}">sign up</a> for a {{ site_name }} account and sign in below:
+            {% endblocktrans %}
+            <!-- Provide options for signing in via social accounts or creating a new account -->
+        </p>
+
+        <div class="socialaccount_ballot">
+            <!-- Container for social account login options -->
+
+            <ul class="socialaccount_providers">
+                {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                <!-- Include a list of social account providers -->
+            </ul>
+
+            <div class="login-or">
+                {% trans 'or' %}
+                <!-- Display a separator between social login and standard login -->
+            </div>
+        </div>
+
+        {% include "socialaccount/snippets/login_extra.html" %}
+        <!-- Include additional login-related content -->
+
+    {% else %}
+        <!-- If no social account providers are available -->
+        <p>
+            {% blocktrans %}
+            If you have not created an account yet, then please 
+            <a href="{{ signup_url }}">sign up</a> first.
+            {% endblocktrans %}
+            <!-- Encourage the user to create an account if none exists -->
+        </p>
+    {% endif %}
+
+    <form class="login" method="POST" action="{% url 'account_login' %}">
+        <!-- Form for standard email/password login -->
+        {% csrf_token %}
+        <!-- Add CSRF token for form security -->
+        {{ form|crispy }}
+        <!-- Render the login form with crispy forms for styling -->
+
+        {% if redirect_field_value %}
+            <!-- If a redirect field is set, include it as a hidden input -->
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+
+        <a class="button secondaryAction" href="{% url 'account_reset_password' %}">
+            {% trans "Forgot Password?" %}
+            <!-- Link to reset the password -->
+        </a>
+        <button class="primaryAction btn btn-primary" type="submit">
+            {% trans "Sign In" %}
+            <!-- Submit button for the login form -->
+        </button>
+    </form>
+{% endblock %}

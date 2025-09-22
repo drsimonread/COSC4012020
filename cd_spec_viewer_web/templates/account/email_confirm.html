@@ -1,32 +1,51 @@
 {% extends "account/base.html" %}
+<!-- Extend the base template for account-related pages -->
 
 {% load i18n %}
+<!-- Load the internationalization library for translations -->
 {% load account %}
+<!-- Load custom template tags for account management -->
 
-{% block head_title %}{% trans "Confirm E-mail Address" %}{% endblock %}
-
-
-{% block inner %}
-<h1>{% trans "Confirm E-mail Address" %}</h1>
-
-{% if confirmation %}
-
-{% user_display confirmation.email_address.user as user_display %}
-
-<p>{% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
-
-<form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
-{% csrf_token %}
-    <button class="btn btn-primary" type="submit">{% trans 'Confirm' %}</button>
-</form>
-
-{% else %}
-
-{% url 'account_email' as email_url %}
-
-<p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
-
-{% endif %}
-
+{% block head_title %}
+    {% trans "Confirm E-mail Address" %}
+    <!-- Set the page title to "Confirm E-mail Address" -->
 {% endblock %}
 
+{% block inner %}
+    <!-- Main content block for the page -->
+    <h1>{% trans "Confirm E-mail Address" %}</h1>
+    <!-- Page heading -->
+
+    {% if confirmation %}
+        <!-- If a valid confirmation object is available -->
+        {% user_display confirmation.email_address.user as user_display %}
+        <!-- Get the user display name for the associated email address -->
+
+        <p>
+            {% blocktrans with confirmation.email_address.email as email %}
+            Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.
+            {% endblocktrans %}
+            <!-- Display a message to confirm the email address for the user -->
+        </p>
+
+        <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+            {% csrf_token %}
+            <!-- Add CSRF token for form security -->
+            <button class="btn btn-primary" type="submit">{% trans 'Confirm' %}</button>
+            <!-- Button to confirm the email address -->
+        </form>
+
+    {% else %}
+        <!-- If the confirmation object is invalid or expired -->
+        {% url 'account_email' as email_url %}
+        <!-- Get the URL for requesting a new email confirmation -->
+
+        <p>
+            {% blocktrans %}
+            This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.
+            {% endblocktrans %}
+            <!-- Display a message to let the user request a new confirmation email -->
+        </p>
+    {% endif %}
+
+{% endblock %}

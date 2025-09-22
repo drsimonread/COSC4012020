@@ -1,0 +1,50 @@
+***QA Product Backlog***
+
+- [x] ~~Greenwell Customer Visit~~  
+- [x] ~~Tracing~~  
+      - [x] ~~[Trace](https://docs.google.com/document/d/1os65TJvX6ufx17S2XoVRUGyN9kjgVi5_/edit) newly completed tests to [SRS](https://docs.google.com/document/d/18O2LRt3E-uxt3SPEOAuJy9GEFfvscALflvwEWL9Wu6o/edit) requirements~~  
+            - [x] ~~Denote which tests failed in the matrix (Maybe make the failed test cells red)~~   
+      - [x] ~~Trace .py files to [SRS](https://docs.google.com/document/d/18O2LRt3E-uxt3SPEOAuJy9GEFfvscALflvwEWL9Wu6o/edit) requirements~~  
+            - [x] ~~Make new Traceability Matrix: will trace .py files to requirements~~  
+            - [x] ~~Refer to [this document](https://docs.google.com/document/d/1zTsihsIW3v96RbcZC0JXa9UiWBMPcBhcXQ92a19tgI4/edit) for the new Traceability Matrix; R\&D will be starting to fill this out~~  
+- [x] ~~**10/19 Code Review**~~  
+- [x] ~~**/////////////////////////////////////////////////////////////////////////////////**~~  
+- [x] ~~Everyone should have Docker installed on their system~~  
+- [ ] Finish Tracing .py files to [SRS](https://docs.google.com/document/d/18O2LRt3E-uxt3SPEOAuJy9GEFfvscALflvwEWL9Wu6o/edit) requirements  
+      - [x] ~~Make new Traceability Matrix: will trace .py files to requirements~~  
+      - [x] ~~Refer to [this document](https://docs.google.com/document/d/1zTsihsIW3v96RbcZC0JXa9UiWBMPcBhcXQ92a19tgI4/edit) for the new Traceability Matrix; R\&D will be starting to fill this out~~  
+- [ ] Make list of .py files which R\&D needs to debug/fix based on failed requirements  
+- [ ] Have all .py files fully traced by Sunday, 11/13  
+- [ ] Assist R\&D with Unit Testing  
+- [ ] Complete new STP Document by Tuesday, 11/22  
+- [ ] Have Test Results Document and all System Testing complete by 12/4  
+- [ ] Tidy up Documentation and Wrap-up by 12/13
+
+***R\&D Product Backlog***
+
+- [x] ~~Greenwell Customer Visit~~  
+- [x] ~~Style guide; Discuss the proposed header template located in the team Discord~~  
+- [x] ~~Finish commenting code; use [new document](https://docs.google.com/document/d/1zTsihsIW3v96RbcZC0JXa9UiWBMPcBhcXQ92a19tgI4/edit) to record which ones are commented/completed/need help with.~~  
+- [x] ~~Get GitHub Repo to QA~~  
+- [x] ~~**10/19 Code Review**~~  
+- [x] ~~**/////////////////////////////////////////////////////////////////////////////////**~~  
+- [x] ~~Finalize .py Files Relationship Model/ Diagram~~  
+      - [x] ~~When finished, I want both teams to discuss the structure so that everyone can understand how the program functions~~  
+- [x] ~~Address any comment concerns QA has~~  
+      - [x] ~~Add to comments that QA doesn’t understand fully~~  
+- [x] ~~Download Docker~~  
+      - [x] ~~[How to Instructions](https://docs.google.com/document/d/1IMU35kl0ulgNxhSOdS2LPHouUOrKbKyj/edit)~~  
+      - [x] ~~[Visual Instructions to help](https://docs.google.com/presentation/d/10_vgcaxQ5PLeU1MqoB549S5asWC75yHS/edit#slide=id.p1) (Slides 3-15; Sysops and I get error after slide 15, if you don’t let us know)~~  
+- [ ] Have all .py files have fully commented headings by Sunday 11/13  
+- [ ] Have Unit Testing and Unit Debugging done by Tuesday 11/22  
+- [ ] Have System Testing and Debugging done by Sunday 12/4
+
+***SysOps Product Backlog***
+
+- [x] ~~Report on OIT’s certification renewal for the software~~  
+- [x] ~~Collaborate with QA to set up local deployments so legacy software testing can finally be completed (admin account creation)~~  
+- [x] ~~**10/19 Code Review**~~  
+- [ ] **/////////////////////////////////////////////////////////////////////////////////**  
+- [ ] Local Deployment Docker presentation on Wednesday, 11/16  
+- [ ] Environment Emulation Options of Linux / Ubuntu by Tuesday, 11/22  
+- [ ] Environment Testing by Sunday, 12/4

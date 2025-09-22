@@ -1,0 +1,160 @@
+This is a AI generation of everything I belive needs to be done on CD spec
+It should be used as a refrence for our sprints and getting started:
+Sprint 1: Project Setup & Assessment (1 weeks)
+- Create a new project board (using GitHub Projects or Jira)
+- Document current functionality
+- Create test cases for existing features
+- Set up development/staging environments
+- User story mapping
+- Risk assessment
+
+Sprint 2: Authentication Modernization (3 weeks)
+```python:your_app/settings.py
+INSTALLED_APPS = [
+    # ...
+    'django.contrib.auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+]
+
+# Modern Google OAuth settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': 'your-client-id',
+            'secret': 'your-secret',
+            'key': ''
+        },
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+    }
+}
+```
+User Stories:
+1. As a user, I need to log in with my Google account
+2. As an admin, I need to manage user permissions
+3. As a developer, I need secure credential storage
+
+Sprint 3: Gmail API Update (2 weeks)
+```python:your_app/services/gmail_service.py
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import Flow
+from googleapiclient.discovery import build
+
+class GmailService:
+    def __init__(self):
+        self.scopes = ['https://www.googleapis.com/auth/gmail.send']
+        
+    def get_service(self, credentials):
+        return build('gmail', 'v1', credentials=credentials)
+        
+    def send_email(self, user_email, subject, body):
+        # Modern implementation
+        credentials = Credentials.from_authorized_user_info(...)
+        service = self.get_service(credentials)
+        # Email sending logic
+```
+User Stories:
+1. As a user, I need to receive email notifications
+2. As an admin, I need to send bulk emails
+3. As a developer, I need proper error handling
+
+Sprint 4: Testing & Documentation (2 weeks)
+```python:tests/test_auth.py
+from django.test import TestCase
+from allauth.socialaccount.models import SocialApp
+
+class GoogleAuthTest(TestCase):
+    def setUp(self):
+        self.google_app = SocialApp.objects.create(
+            provider='google',
+            name='Google',
+            client_id='test-client-id',
+            secret='test-secret'
+        )
+    
+    def test_google_login(self):
+        # Test cases
+```
+
+Sprint 5: UI/UX Updates & Final Integration (2 weeks)
+```html:templates/account/login.html
+{% extends "base.html" %}
+
+{% block content %}
+<div class="login-container">
+    <h2>Login</h2>
+    <!-- Modern Google Sign-In button -->
+    <div id="g_id_onload"
+         data-client_id="{{ google_client_id }}"
+         data-callback="handleCredentialResponse">
+    </div>
+    <div class="g_id_signin" data-type="standard"></div>
+</div>
+{% endblock %}
+```
+Agile Ceremonies for Each Sprint:
+1. Sprint Planning
+   - Story point estimation
+   - Sprint goal setting
+   - Task breakdown
+
+2. Daily Standups
+   - What was completed
+   - What's planned
+   - Any blockers
+
+3. Sprint Review
+   - Demo new features
+   - Stakeholder feedback
+   - Acceptance criteria verification
+
+4. Sprint Retrospective
+   - What went well
+   - What could improve
+   - Action items
+
+Key Agile Artifacts:
+1. Product Backlog
+   - All user stories
+   - Bug reports
+   - Technical debt items
+
+2. Sprint Backlog
+   - Current sprint tasks
+   - Story points
+   - Acceptance criteria
+
+3. Burndown Chart
+   - Track progress
+   - Identify bottlenecks
+   - Adjust timeline
+
+4. Definition of Done:
+   - Code reviewed
+   - Tests written and passing
+   - Documentation updated
+   - Deployed to staging
+   - Security checks passed
+   - Performance tested
+
+Tools to Consider:
+- Jira/GitHub Projects for project management
+- GitHub Actions for CI/CD
+- SonarQube for code quality
+- pytest for testing
+- Docker for containerization
+
+This Agile approach allows for:
+- Incremental improvements
+- Regular feedback
+- Risk mitigation
+- Continuous integration
+- Quality assurance at each step
+- Team collaboration
+- Adaptability to changes

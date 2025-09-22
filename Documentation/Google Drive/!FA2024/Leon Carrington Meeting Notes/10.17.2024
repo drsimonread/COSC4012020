@@ -1,0 +1,63 @@
+- 2 versions of CDSpec
+    - Deployed version running at OIT
+    - Spent a lot of time trying to get a test version of the software on a local machine,
+       so there are 2 versions
+    - Infrastructure issues– live one borrows some credentials from SMCM (we can’t
+       access those)
+- Local needs Docker, Windows 10, system is Linux based so need Linux subsystem
+- Setup document so that you can run CDSpec on a laptop
+- Someone needs to take over admin function to push changes to the website & create
+    account for everyone- system administrator
+       - Admin credentials are in R&D to do document
+- Talk to Jordan(music major) about final report
+- Pushing changes to the official website– either have to get authorization from Mark
+    Fleming to manage the instance or set a time to push changes to the official site- most
+    likely be a system administrator
+- Will Capon– able to get access to push changes
+- Administrative level issues– docker version they were using is gone, should be able to
+    function, use docker in order to run an instance of cdspec on your personal computer
+    (test version), needs access to linux subsystem
+- Nginx- fine web server, too ambitious at the beginning, attempts to deploy various
+    technologies overlapped was way too ambitious
+- Nginx is web server as choice, built in web server with Django but not robust, Gunicorn
+    creates an issue
+- Simon wants to swap to Apache
+    - Not too difficult to swap Nginx and Apache, Nginx as opposed to Apache not
+       super important
+- CDSpec is designed by one article- answers to why cookie cutter, why ngnix, without a
+    big hassle replace nginx with apache
+- If you run into an issue with Django being too intertwined, contact him and talk to simon
+    cause it was a hike the first time
+- Cookiecutter connected to Gunicorn, management portion of the mail functionality,
+    CDSpec heavily dependent on mail
+- Gunicorn and/or CookieCutter related to security
+    - Involved in providing a self hosted certificate server in the local version
+    - In the live version licensed by smcm- some sort of maintenance issue (HUGE
+       MAINTENANCE ISSUE)- but OIT is a mess
+    - Things are so bad they have to use AWS, implies it could go either way, job of
+       getting certificate servers easy or harder
+    - Monetary issue, comes out of OIT budget
+- Architecture issue- might be required to be SMCM certificate server
+- The certificate server license is paid for by SMCM and is not always kept up to date.
+    That also will prevent logging in.
+- Main issues are mail authentication, when you log into cdspec and create spectrometer
+    files, everything works fine but when you try to come back it will not let you in
+
+
+- When you log in it wants to send you your password, but it sends your password to a
+    command prompt window and you need to have a cmd window open
+- Will tried to authenticate at the network level, ran into a deprecated OAuth, took a look,
+    realized Google wasn't going to keep the technology (broke on March 30)
+- Login process using school domain authentication, reason why OIT has to be involved
+- Recommendation now is to pursue the idea of having our app use 2 factor authentication
+    for which we can use an app we will register with google in order for the app to provide
+    the authority needed, not going to break
+- Consider getting a small program that will be recognized as authentication by google
+- Need admin password in Docker instance, admin password is in R&D to do
+- https://github.com/swbn1/CDSpecCollab_COSC4012020-FA24/blob/master/cd_spec_vie
+    wer_web/README.rst
+- https://docs.google.com/document/d/1Qdn6xtJPfSQENGqmoX_CND8Hj8bzYt8NQw1Qs
+    CFdblU/edit
+-
+
+

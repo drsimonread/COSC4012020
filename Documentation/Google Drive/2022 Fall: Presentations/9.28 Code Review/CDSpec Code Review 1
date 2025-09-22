@@ -1,0 +1,155 @@
+# CDSpec Code
+
+# Review
+
+
+## Matt Boddicker- QA Team Lead
+
+#### ● Contribution
+
+```
+○ Delegating tasks for team members to accomplish
+○ Reviewing past documents on current project
+○ Performed testing of website using google log in
+○ Helped to update documents to current versions
+○ Updated Traceability matrix to include tests and
+```
+#### ● Obstacles and Barriers
+
+```
+○ Gantt Chart- not finalized until we can get projections for when R&D will begin coding
+○ Testing- Needs to be reviewed after admin account can be created
+○ SDP & SDD need to be updated with time frames
+```
+
+## Marian Marteja - QA team
+
+#### ● Contribution
+
+```
+○ Organized the 2022 CD Spec folder
+○ Reviewed previous documentation from both the 2020 and 2021 folders
+○ Copied the more recent CD spec documents
+○ Edited and updated the following documents:
+■ SDP
+■ SRS
+■ SDD
+■ Traceability matrix
+```
+#### ● Obstacles and barriers:
+
+```
+○ We were unable to perform efficient tests due to problems with logging into current CD spec website.
+```
+#### ● Whats next?
+
+```
+○ Collaborate with R&D to develop a gantt chart
+○ Perform more testing to CD spec website
+```
+
+## Gavin McDonald- QA Team
+
+#### ● Contribution
+
+```
+○ Edit and maintain documentation
+■ SRS Primary
+■ Traceability Matrix Secondary
+○ Perform tests to ensure website functionality
+○ Assist with updating any miscellaneous documentation or information
+■ Initialized a todo sheet and filled out information on it
+```
+
+## Victor Riley- QA Team
+
+##### ● Contribution
+
+##### ❖ Read throughout the documents
+
+##### ❖ Updated/ Test
+
+- Performed test to the traceability matrices
+- Old Documents to up to date
+- Look over Cd Spec document
+
+##### ● Whats Next
+
+- See what the client wants done
+
+
+## Jordan Reece - QA team member
+
+```
+● Contributions
+```
+- Read past versions of the following documents: SRS, SDP, Gantt chart to familiarize myself with what is expected of us as team
+members
+- Review and update old documents from past classes
+- Performed tests that were specified by past team members
+● Obstacles encountered
+- Multiple tests that were specified by previous team members could not be performed due to not being able to log into the CD
+spec system
+● What’s next
+- Once an account can be created, we will continue to go through all the tests to see what works and what still has errors
+- Update documents accordingly
+
+
+## Jack Eskay - CDSpec R&D Team Lead
+
+### Objectives:
+
+- Complete Django Tutorial
+- Gain basic understanding of python code
+- Create separate git repository for editing .py files
+- Begin reading through, understanding, and commenting .py files
+
+### Contributions:
+
+- Completed Django tutorial
+- Went through CD Spec website with team looking for physical issues with site
+- Began going through gaining understanding of .py files
+    - Started commenting uncommented sections to create more clear
+
+### understanding
+
+
+## Sosan Wahid
+
+#### Contributions
+
+#### ● Went through pervious documentations from 2020&
+
+#### ● Reviewed the website and documented any issues
+
+#### ● Went through Django tutorial to get familiar with it
+
+#### ● Reviewing previous code and commenting where necessary
+
+
+## Andrew Kivrak
+
+#### Contributions
+
+#### ● Went through Django tutorial to get familiar with it
+
+#### ● Reviewing previous code and commenting where necessary
+
+#### ● Looked over CD Spec document
+
+#### Going to continue reading and comment code
+
+
+## William Capon
+
+#### Contributions:
+
+#### ● Completed django tutorial to learn framework
+
+#### ● Studied Google Python style guide
+
+#### ● Forked repository and setup git access
+
+#### ● Began iteration on module/license boilerplate
+
+

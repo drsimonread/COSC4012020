@@ -1,0 +1,22 @@
+## Password Reset Process
+
+**Issue:** Attempting to reset a password results in a 104 internal server error  
+**Issue:** Password reset indicates to the user if the email is a registered user or not, potential security flaw.
+
+## Account Creation Process
+
+**Issue:** Registration leads to a internal server error, or (somewhat bafflingly) insists the email is already registered
+
+## Misc
+
+**Issue:** Invalid color hex strings throw uncaught errors (minor)
+
+## Outstanding QA from last year: **Test:** About page readability
+
+**Results:** This is a wall of text.  No one could find anything.  Please organize into categories and make more readable → some spelling/grammar errors here and there should be fixed as well  
+**Done: No**
+
+**Test**: search function  
+**Results**: case sensitive. Users must remember exactly what they called the file or else it won’t be found. Example: when trying to find a file called 40% Roundup Test File, file is not found in search bar if “file” or “test” are written. It would appear you must type in the first word of the file you want or else it will not find the file.  
+**Resolved: No**  
+**Additional Comments: The search function shouldn't be case sensitive anymore, but you are correct in that the search only matches the beginning of the name. I've tried looking up how to fix it, but I'm not sure what the problem is, so it's likely this can't be fixed anytime soon. Though, users can still try searching by run user/uploader and sort the columns out (even ctrl+F if need be).**  

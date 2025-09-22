@@ -1,0 +1,153 @@
+# CD Spec Code
+
+# Review
+
+
+## Matt Boddicker- QA Team Lead
+
+```
+● Created New Traceability Matrix Comparing code comment .py files to aspects
+○ Added py file names in table to traceability matrix
+○ Delegated to team members commented .py files to review
+● Performed corrections on SDP to keep wording consistent
+● Downloaded and set up Docker and GitHub
+```
+
+## Gavin McDonald - QA
+
+```
+● Participated in creating updated traceability matrix
+● Attempted Installation of Docker
+```
+
+## Marian Marteja - QA
+
+```
+● Created a new Traceability Matrix.
+○ Included the py files
+● Reviewed the commented code
+● Installed Docker
+○ Was difficult to install to install the Linux Kernel package
+● Problems we are having:
+○ Docker took a while to install
+○ Insufficient comments
+○ Waiting on R&D
+```
+
+## Victor Riley - QA
+
+● Updated the new Traceability matrix
+
+- the py files
+
+● Looked over SDP to make sure everything is up to date
+
+● Downloaded github and docker to my computer
+
+```
+Next:
+```
+● Learn how to use docker for future testing
+
+
+## Liam Pratt - QA
+
+```
+● Updated Traceability Matrix to reference functionalities in latest model - Cross
+referenced Initialization File with the functionalities of the website it affected
+● Downloaded Docker and GitHub
+● Plan on continuing to update the Traceability Matrix
+```
+
+## Jordan Reece - QA team member
+
+```
+● Looked over the traceability matrix to see what could be added from the Usage document
+(.py files)
+● Looked over SDP to make sure everything is up to date and wording is the same
+throughout the document.
+● Downloaded github and docker on my system
+```
+What’s next
+
+```
+● Finish the slides from R&D guide to figure out how to use docker
+```
+
+## Jack Eskay- CDSpec Team Lead
+
+### Work completed this week
+
+- Finished commenting .py files for the CDspec deployed version
+- Competed .py file completion record for QA
+- Discussed and began to create chart representing how each of .py files are linked/run
+
+### together in lucidchart
+
+### Example .py file I commented
+
+- Manage.py
+- Works as the manager file which ensures
+
+### that django is installed and running as
+
+### default environment for program
+
+- Uses try catch to inform user if django
+
+### has been installed and used or not
+
+
+## Andrew Kivrak - CDSpec RD
+
+### Work completed this week
+
+- Finished commenting .py files for the CDspec deployed version tests
+
+### Example .py file I commented
+
+- Test_urls.py
+- This code manages and test the urls
+- It uses assertions to get the details,
+- Update, and redirect the urls by
+- Reversing and resolving
+
+
+## Sosan Wahid - CDSpec RD
+
+Work Completed:
+
+```
+● Completed commenting the deployed version of CDSpec .py files.
+```
+Work in Process:
+
+```
+● Complete the chart that shows how each .py files are connected to each other.
+```
+Example of .py file commented by me:
+
+Forms.py
+
+```
+● This code implements the generic form
+for viewing CPSec models.
+● This code allows to upload a form which
+follows specific fields that have been
+mentioned in the fields, it also allows to
+edit specific fields.
+```
+
+## William Capon - CDSpec RD
+
+Work Done;
+
+- Continued commenting and reverse-engineering code
+- Dug a bit deeper into Django
+
+Work Yet To Be Done:
+
+- Get the Docker environment running
+- Complete relationship table
+
+

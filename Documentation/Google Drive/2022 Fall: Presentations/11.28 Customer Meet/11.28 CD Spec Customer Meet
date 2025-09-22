@@ -1,0 +1,75 @@
+# CD Spectrometer 11/
+
+# Presentation Fall 2022
+
+Legacy Code Maintenance and Upgrade
+
+
+## Agenda ● Progress Reports^
+
+##### ● Project Direction
+
+##### ● Question Session
+
+
+## Progress
+
+## Report
+
+###### ● QA: Traceability Matrix, STP
+
+###### ● R&D: Re-commented Code,
+
+###### Docker developments
+
+###### ● SysOps: Docker
+
+###### developments, local
+
+###### deployment
+
+
+#### Code Sample
+
+#### users/forms.py
+
+
+#### Code Sample #
+
+#### users/admin.py
+
+
+## Project
+
+## Direction
+
+##### ● Testing local
+
+##### deployments, baselining
+
+
+#### Plan A Plan B
+
+```
+● Prioritize Debugging
+○ Focus on cleaning up bugs
+○ Short-term solution
+● More risk-prone
+○ Not all bugs may be found
+○ Dependent on cooperation
+of OIT to deploy
+○ Other end-of-year project
+interferences
+```
+```
+● Prioritize Maintenance
+○ Focus on planning
+○ Long-term investment
+● More time-consuming
+○ Project will bleed into next
+semester
+```
+
+### Questions?
+
+

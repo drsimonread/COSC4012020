@@ -1,24 +1,22 @@
-{% extends "account/base.html" %}
+]{% extends "account/base.html" %} <!-- Extend the base template for account-related pages -->
 
-{% load i18n %}
+{% load i18n %} <!-- Load internationalization tags for translations -->
 
-{% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
+{% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %} <!-- Set the page's title -->
 
 {% block inner %}
-<h1>{% trans "Verify Your E-mail Address" %}</h1>
+<h1>{% trans "Verify Your E-mail Address" %}</h1> <!-- Main header for the page -->
 
-{% url 'account_email' as email_url %}
+{% url 'account_email' as email_url %} <!-- Resolve the URL for updating email and assign it to 'email_url' -->
 
 <p>{% blocktrans %}This part of the site requires us to verify that
 you are who you claim to be. For this purpose, we require that you
-verify ownership of your e-mail address. {% endblocktrans %}</p>
+verify ownership of your e-mail address. {% endblocktrans %}</p> <!-- Message explaining the need for email verification -->
 
 <p>{% blocktrans %}We have sent an e-mail to you for
 verification. Please click on the link inside this e-mail. Please
-contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
+contact us if you do not receive it within a few minutes.{% endblocktrans %}</p> <!-- Instructions for completing email verification -->
 
-<p>{% blocktrans %}<strong>Note:</strong> you can still <a href="{{ email_url }}">change your e-mail address</a>.{% endblocktrans %}</p>
-
+<p>{% blocktrans %}<strong>Note:</strong> you can still <a href="{{ email_url }}">change your e-mail address</a>.{% endblocktrans %}</p> <!-- Provide a link to update the email address -->
 
 {% endblock %}
-
