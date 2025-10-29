@@ -13,6 +13,13 @@ class AccountAdapter(DefaultAccountAdapter):
         return getattr(settings, "ACCOUNT_ALLOW_REGISTRATION", True)
 
     def clean_email(self, email):
+        request = getattr(self, 'request', None)
+        if request:
+            if request.path.startswith("/accounts/password/reset/") or \
+            request.path.startswith("/accounts/password/"):
+                # Allow password reset and confirm steps
+                return email
+
         """Prevent account creation if the email is already in use."""
         if User.objects.filter(email=email).exists():
             raise ValidationError("An account with this email already exists.")
