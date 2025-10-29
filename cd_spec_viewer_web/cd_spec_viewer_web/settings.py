@@ -16,7 +16,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Key used to pair with google and allows for google authentication
 # Sign in with google (needs to be changed to special email when released)
 # (UPDATE ON RELEASE)
-SECRET_KEY = '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'
+SECRET_KEY = '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'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # When you go to a page with an error, when enabled this displays
@@ -136,7 +136,7 @@ AUTHENTICATION_BACKENDS = [
 AUTH_USER_MODEL = "users.User"
 
 # The site ID the site these settings apply to in the django admin
-SITE_ID = 2 # (UPDATE ON RELEASE), likely needs changed to 3
+SITE_ID = 4 # (UPDATE ON RELEASE), likely needs changed to 3
 
 # PASSWORDS
 # ------------------------------------------------------------------------------
