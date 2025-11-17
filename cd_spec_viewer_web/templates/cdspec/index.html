@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}CD Spectroscopy Data{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>CD Spectroscopy Datasets</h1>
+    
+    {% if username %}
+        <div class="alert alert-info">
+            Filtered by user: <strong>{{ username }}</strong>
+        </div>
+    {% endif %}
+    
+    {% if latest_runs %}
+        <div class="list-group">
+        {% for run in latest_runs %}
+            <a href="{% url 'cdspec:detail' run.id %}" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ run.run_title }}</h5>
+                    <small class="text-muted">{{ run.run_date|date:"M d, Y" }}</small>
+                </div>
+                <p class="mb-1">{{ run.run_description }}</p>
+                <small class="text-muted">Run by: {{ run.run_user }} | Data points: {{ run.data_points }}</small>
+            </a>
+        {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-warning">
+            No CD spectroscopy datasets available.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
