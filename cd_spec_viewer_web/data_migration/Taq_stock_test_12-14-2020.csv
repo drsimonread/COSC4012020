@@ -1,0 +1,77 @@
+TITLE,Taq stock test 12-14-2020
+DATA TYPE,
+ORIGIN,JASCO
+OWNER,
+DATE,20/12/14
+TIME,18:36:27
+SPECTROMETER/DATA SYSTEM,
+LOCALE,1033
+XUNITS,Temperature[C]
+YUNITS,CD [mdeg]
+Y2UNITS,HT [V]
+Y3UNITS,ABSORBANCE
+FIRSTX,   19.9900
+LASTX,  110.8200
+NPOINTS,      10
+XYDATA
+19.9900,-0.230463,266.902,0.903612
+31.7000,0.0904717,267.276,0.90797
+41.5200,0.0774459,267.788,0.913925
+51.7900,0.107661,268.312,0.920011
+61.5400,0.172024,268.858,0.926342
+71.6400,0.371146,269.376,0.932344
+81.5600,0.450719,269.924,0.93868
+91.7400,0.640459,270.695,0.947572
+101.7400,0.915682,271.761,0.959835
+110.8200,1.27128,274.265,0.988484
+
+##### Extended Information
+[Comments]
+Sample name,Taq stock test 12-14-2020
+Comment
+User
+Division
+Company,Saint Mary's College
+
+[Detailed Information]
+Creation date,12/14/2020 6:36 PM
+
+Data array type,Non-linear data array * 3
+Horizontal axis,Temperature [C]
+Vertical axis(1),CD [mdeg]
+Vertical axis(2),HT [V]
+Vertical axis(3),Abs
+Start,19.99 C
+End,110.82 C
+Data points,10      
+
+[Measurement Information]
+Instrument name,J-1500
+Model name,J-1500
+Serial No.,B051061638
+
+Detector,PM-539
+Detector S/N,B051061638
+  Lock-in amp.,X mode
+  HT volt,Auto
+
+Accessory,PTC-517
+Accessory S/N,B026561646
+  Control sensor,Holder
+  Monitor sensor,Holder
+  Start Mode,Keep target temperature +/-0.25 deg C while 5 seconds
+  Cell length,1 mm
+
+Measurement date,12/14/2020 6:29 PM
+
+Photometric mode,CD, HT, Abs
+CD scale,20 mdeg/0.05 dOD
+FL scale,200 mdeg/0.1 dOD
+D.I.T.,8 sec
+Bandwidth,1.00 nm
+Monitor wavelength,220 nm
+Baseline correction,None
+Shutter control,Auto
+No. of cycle,1
+
+

@@ -24,10 +24,19 @@ class IndexView(generic.ListView):
     context_object_name = 'latest_runs'
 
     def get(self, request, *args, **kwargs):
+        # Get the queryset first
+        queryset = self.get_queryset()
+        
+        # Prepare context
+        context = {
+            'latest_runs': queryset
+        }
+        
+        # Add username if provided in kwargs
         if kwargs:
-           return render(request, 'cdspec/index.html', {'username' : kwargs['user']})
-        else:
-           return render(request, 'cdspec/index.html')
+            context['username'] = kwargs['user']
+            
+        return render(request, 'cdspec/index.html', context)
 
     def get_queryset(self):
         #if uploadedby=user argument is passed, filter the table
@@ -36,7 +45,7 @@ class IndexView(generic.ListView):
            return SpecRun.objects.filter(upload_user=user).order_by('-upload_date')[:10]
         else:
            return SpecRun.objects.order_by('-upload_date')[:10]
-
+           
 #Edit view, allows the editing of existing objects
 def edit(request, pk):
     user = request.user
