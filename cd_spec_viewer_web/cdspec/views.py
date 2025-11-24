@@ -49,7 +49,37 @@ class IndexView(generic.ListView):
            return SpecRun.objects.filter(upload_user=user).order_by('-upload_date')[:10]
         else:
            return SpecRun.objects.order_by('-upload_date')[:10]
-           
+
+def upload_csv(request):
+    if request.method == "POST":
+        uploaded_file = request.FILES.get("csvFile")
+
+        if not uploaded_file:
+            return render(request, "pages/upload.html", {
+                "error": "No file uploaded."
+            })
+
+        if not uploaded_file.name.endswith(".csv"):
+            return render(request, "pages/upload.html", {
+                "error": "File must be a .csv file."
+            })
+
+        # Build a path: <project_root>/data_migration/cdspecruns
+        upload_path = os.path.join(settings.BASE_DIR, "data_migration", "cdspecruns")
+
+        # Make sure folder exists
+        os.makedirs(upload_path, exist_ok=True)
+
+        # Save file into that folder
+        fs = FileSystemStorage(location=upload_path)
+        filename = fs.save(uploaded_file.name, uploaded_file)
+
+        return render(request, "pages/upload.html", {
+            "success": f"Uploaded {filename}!"
+        })
+
+    return render(request, "pages/upload.html")   
+
 #Edit view, allows the editing of existing objects
 def edit(request, pk):
     user = request.user
