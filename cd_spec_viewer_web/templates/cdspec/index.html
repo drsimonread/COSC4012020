@@ -7,14 +7,16 @@
 <div class="container mt-4">
 
     <h2 class="mb-4">CD Spectroscopy Datasets</h2>
-
-    <form action="{% url 'cdspec:upload_csv' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <label for="csvFile">Upload CSV:</label>
-        <input type="file" id="csvFile" name="csvFile" accept=".csv" required>
-        <button type="submit">Upload</button>
-    </form>
-
+    {% if request.user.is_authenticated %}
+        <form action="{% url 'cdspec:upload_csv' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="csvFile">Upload CSV:</label>
+            <input type="file" id="csvFile" name="csvFile" accept=".csv" required>
+            <button type="submit">Upload</button>
+        </form>
+    {% else %}
+        <p>You must be logged in to upload files.</p>
+    {% endif %}
     <table class="table table-bordered table-hover align-middle">
         <thead class="table-light">
             <tr>

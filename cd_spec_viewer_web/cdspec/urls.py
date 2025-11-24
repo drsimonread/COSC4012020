@@ -23,4 +23,5 @@ urlpatterns = [
     # /cdspec/ table data
     re_path(r'^spec_run_data/$', SpecRunJson.as_view(), name="spec_run_list_json"),
     path('spec_run_data/<str:user>/', SpecRunJson.as_view(), name="spec_run_list_json_user"),
+    path("upload/", views.upload_csv, name="upload_csv"),
 ]
