@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ specrun.run_title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ specrun.run_title }}</h1>
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Experiment Details</h5>
+            <p class="card-text">{{ specrun.run_description }}</p>
+            <ul class="list-unstyled">
+                <li><strong>Run by:</strong> {{ specrun.run_user }}</li>
+                <li><strong>Run date:</strong> {{ specrun.run_date|date:"M d, Y H:i" }}</li>
+                <li><strong>Upload date:</strong> {{ specrun.upload_date|date:"M d, Y H:i" }}</li>
+                <li><strong>Data points:</strong> {{ specrun.data_points }}</li>
+                {% if specrun.protein_concentration %}
+                <li><strong>Protein concentration:</strong> {{ specrun.protein_concentration }}</li>
+                {% endif %}
+                {% if specrun.pathlength %}
+                <li><strong>Pathlength:</strong> {{ specrun.pathlength }} cm</li>
+                {% endif %}
+                {% if specrun.number_of_amino_acids %}
+                <li><strong>Amino acids:</strong> {{ specrun.number_of_amino_acids }}</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Spectral Data</h5>
+            <div id="chart" style="height: 400px;"></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+    var xData = {{ x|safe }};
+    var yData = {{ y|safe }};
+    
+    var trace = {
+        x: xData,
+        y: yData,
+        type: 'scatter',
+        mode: 'lines',
+        name: 'CD [mdeg]'
+    };
+    
+    var layout = {
+        title: 'CD Spectrum',
+        xaxis: { title: '{{ specrun.x_units|default:"Wavelength" }}' },
+        yaxis: { title: '{{ specrun.y_units|default:"CD [mdeg]" }}' }
+    };
+    
+    Plotly.newPlot('chart', [trace], layout);
+</script>
+{% endblock %}

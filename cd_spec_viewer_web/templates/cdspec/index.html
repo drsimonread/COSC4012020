@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}CD Spectroscopy Data{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h2 class="mb-4">CD Spectroscopy Datasets</h2>
+    {% if request.user.is_authenticated %}
+        <form action="{% url 'cdspec:upload_csv' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="csvFile">Upload CSV:</label>
+            <input type="file" id="csvFile" name="csvFile" accept=".csv" required>
+            <button type="submit">Upload</button>
+        </form>
+    {% else %}
+        <p>You must be logged in to upload files.</p>
+    {% endif %}
+    <table class="table table-bordered table-hover align-middle">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">Molecule Name</th>
+                <th scope="col">Run by</th>
+                <th scope="col">Uploaded<br>By</th>
+                <th scope="col">Date</th>
+                <th scope="col">Data<br>Points</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for run in latest_runs %}
+            <tr>
+                <td>
+                    <a href="{% url 'cdspec:detail' run.id %}">
+                        {{ run.run_title }}
+                    </a>
+                </td>
+
+                <td>{{ run.run_user }}</td>
+
+                <td>{{ run.upload_user }}</td>
+
+                <td>{{ run.run_date|date:"M d, Y" }}</td>
+
+                <td>{{ run.data_points }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if latest_runs|length == 0 %}
+        <div class="alert alert-warning mt-3">
+            No CD spectroscopy datasets available.
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

@@ -13,6 +13,10 @@ from django.contrib.auth import get_user_model
 from cdspec.models import SpecRun
 from .forms import CreateForm, EditForm
 from cdspec.util import handle_file_upload, Units, graph_format
+import os
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+from django.shortcuts import render
 
 from django.db.models import Q
 
@@ -24,10 +28,19 @@ class IndexView(generic.ListView):
     context_object_name = 'latest_runs'
 
     def get(self, request, *args, **kwargs):
+        # Get the queryset first
+        queryset = self.get_queryset()
+        
+        # Prepare context
+        context = {
+            'latest_runs': queryset
+        }
+        
+        # Add username if provided in kwargs
         if kwargs:
-           return render(request, 'cdspec/index.html', {'username' : kwargs['user']})
-        else:
-           return render(request, 'cdspec/index.html')
+            context['username'] = kwargs['user']
+            
+        return render(request, 'cdspec/index.html', context)
 
     def get_queryset(self):
         #if uploadedby=user argument is passed, filter the table
@@ -36,6 +49,36 @@ class IndexView(generic.ListView):
            return SpecRun.objects.filter(upload_user=user).order_by('-upload_date')[:10]
         else:
            return SpecRun.objects.order_by('-upload_date')[:10]
+
+def upload_csv(request):
+    if request.method == "POST":
+        uploaded_file = request.FILES.get("csvFile")
+
+        if not uploaded_file:
+            return render(request, "pages/upload.html", {
+                "error": "No file uploaded."
+            })
+
+        if not uploaded_file.name.endswith(".csv"):
+            return render(request, "pages/upload.html", {
+                "error": "File must be a .csv file."
+            })
+
+        # Build a path: <project_root>/data_migration/cdspecruns
+        upload_path = os.path.join(settings.BASE_DIR, "data_migration", "cdspecruns")
+
+        # Make sure folder exists
+        os.makedirs(upload_path, exist_ok=True)
+
+        # Save file into that folder
+        fs = FileSystemStorage(location=upload_path)
+        filename = fs.save(uploaded_file.name, uploaded_file)
+
+        return render(request, "pages/upload.html", {
+            "success": f"Uploaded {filename}!"
+        })
+
+    return render(request, "pages/upload.html")   
 
 #Edit view, allows the editing of existing objects
 def edit(request, pk):
