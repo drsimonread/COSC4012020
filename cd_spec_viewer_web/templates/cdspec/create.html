@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<h1>Upload</h1>
+
+<form action="{% url 'cdspec:create' %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <div class="form-row">
+     <div class="form-group col-md-6 mb-0">
+     {{form.run_title|as_crispy_field}}
+     </div>
+      <div class="form-group col-md-6 mb-0">
+        {{form.run_user|as_crispy_field}}
+      </div>
+    </div>
+    {{form.run_description|as_crispy_field}}
+    <div class="form-row">
+      <div class="form-group col-md-4 mb-0">
+        {{ form.protein_concentration|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-4 mb-0">
+        {{ form.pathlength|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-4 mb-0">
+        {{ form.number_of_amino_acids|as_crispy_field }}
+      </div>
+    </div>
+    <div class="form-row">
+          <div class="form-group col-sm-2 mb-0">
+        {{ form.visible_student|as_crispy_field }}
+      </div>
+      <div class="form-group col-sm-2 mb-0">
+        {{ form.visible_public|as_crispy_field }}
+      </div>
+    </div>
+    {{form.source_file|as_crispy_field}}
+    <input type="submit" class="btn btn-primary" value="Submit">
+</form>
+{% endblock %}

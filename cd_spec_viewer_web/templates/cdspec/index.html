@@ -1,59 +1,113 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block title %}CD Spectroscopy Data{% endblock %}
+{% extends 'base.html' %}
 
 {% block content %}
-<div class="container mt-4">
-
-    <h2 class="mb-4">CD Spectroscopy Datasets</h2>
-    {% if request.user.is_authenticated %}
-        <form action="{% url 'cdspec:upload_csv' %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <label for="csvFile">Upload CSV:</label>
-            <input type="file" id="csvFile" name="csvFile" accept=".csv" required>
-            <button type="submit">Upload</button>
-        </form>
-    {% else %}
-        <p>You must be logged in to upload files.</p>
-    {% endif %}
-    <table class="table table-bordered table-hover align-middle">
-        <thead class="table-light">
-            <tr>
-                <th scope="col">Molecule Name</th>
-                <th scope="col">Run by</th>
-                <th scope="col">Uploaded<br>By</th>
-                <th scope="col">Date</th>
-                <th scope="col">Data<br>Points</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            {% for run in latest_runs %}
-            <tr>
-                <td>
-                    <a href="{% url 'cdspec:detail' run.id %}">
-                        {{ run.run_title }}
-                    </a>
-                </td>
-
-                <td>{{ run.run_user }}</td>
-
-                <td>{{ run.upload_user }}</td>
-
-                <td>{{ run.run_date|date:"M d, Y" }}</td>
-
-                <td>{{ run.data_points }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    {% if latest_runs|length == 0 %}
-        <div class="alert alert-warning mt-3">
-            No CD spectroscopy datasets available.
-        </div>
-    {% endif %}
-
-</div>
+	<table id="table-view" class="table" style="width: 100%" />
 {% endblock %}
+
+{% block extra_js %}
+	{% block javascript %}
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.22/datatables.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css"/>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css"/>
+	
+	<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.22/datatables.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
+	
+	<script>
+	$(document).ready(function() {
+    	var selected = [];
+
+		var dt_table = $('#table-view').DataTable({
+						<!-- could not get url reverse matching to work -->
+			ajax: '/cdspec/spec_run_data/{{username|safe}}',
+			order: [[ 1, "desc" ]],
+			"rowCallback": function( row, data ) {
+				if ( $.inArray(data.pk, selected) !== -1 ) {
+					$(row).addClass('selected');
+				}
+			},
+			columns: [
+				{
+					data: 'pk',
+					visible: false
+				},
+				{
+					title: 'Molecule Name',
+					data: 'run_title',
+					render: function (data, type, row) {
+						return '<a href="/cdspec/' + row.pk + '">' + row.run_title + '</a>';
+					}					
+				},
+				{
+					title: 'Run by',
+					data: 'run_user'
+				},
+                                {
+                                        title: 'Uploaded By',
+                                        data: 'upload_user_string',
+                                        render: function(data) {
+                                                return '<a href="/cdspec/uploadedby=' + data + '">' + data + '</a>'
+                                        }
+                                },
+				{
+					title: 'Date',
+					data: 'upload_date',
+					render: function (data) {
+						let date = new Date(data);
+						return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+					}
+				},
+				{
+					title: "Data Points",
+					data: 'data_points'
+				}
+				
+				{% comment %} {
+					title: 'Upload User waiting dbchange',
+					data: 'run_user'
+				},
+				{
+					title: 'Spectrometer',
+					data: 'protein_concentration'
+				}, {% endcomment %}
+			],
+			rowId: 'pk',
+			searching: true,
+			processing: true,
+			serverSide: true,
+			dom : 'Bfrtip',
+			buttons : [
+			{
+				text : "Upload",
+				action: function(){ window.location.href = "/cdspec/create"; }
+			},
+			{
+				text : "Multi-Graph",
+				action: function(){
+				   var slug = "/"
+				   selected.forEach(pk => slug+= pk + "/");
+				   window.location.href = "/cdspec/multi" + slug;
+				}
+			},
+			]
+		});
+
+		$('#table-view tbody').on('click', 'tr', function () {
+			var id = this.id;
+			var index = $.inArray(id, selected);
+	
+			if ( index === -1 ) {
+				selected.push( id );
+			} else {
+				selected.splice( index, 1 );
+			}
+			console.log(selected);
+			$(this).toggleClass('selected');
+    } );
+
+	});
+	</script>
+	{% endblock javascript %}
+
+{% endblock extra_js %}
