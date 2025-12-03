@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Multi Graph</h1>
+
+{# create a div to display the graph #}
+<div id="graph" width="400" height="200"> </div>
+
+<div>
+{# button for each funtions in the python script #}
+<button onClick = "changeY()">Display {{first.y_units}}</button>
+{% if first.y2_units != None %}
+<button onClick = "changeY2()">Display {{first.y2_units}}</button>
+{% endif %}
+{% if first.y3_units != None %}
+<button onClick = "changeY3()">Display {{first.y3_units}}</button>
+{% endif %}
+</div>
+{# imported javascript data for the poltly app and the colorwheel #}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+
+<div>
+<label for="model"> Change Color: </label>
+{% for protein in proteins %}
+<input type="radio" name="modelS" value="{{forloop.counter}}" checked="checked">{{protein.run_title}}</input>
+{% endfor %}
+
+</div>
+
+{# create a div for the color wheel#}
+ <div class="wrap">
+      <div class="half">
+        <div class="colorPicker"></div>
+       <span class="title">Drag the circle inside the color wheels.</span> 
+      </div>
+      <div class="half readout">
+        <span class="title">Selected Color:</span>
+        <div id="values"></div>
+        <input id="hexInput"></input> 
+       </div>
+    </div>
+
+<script>
+
+
+
+// Create a new color picker instance
+// https://iro.js.org/guide.html#getting-started
+var colorPicker = new iro.ColorPicker(".colorPicker", {
+  // color picker options
+  // Option guide: https://iro.js.org/guide.html#color-picker-options
+  width: 280,
+  color: "rgb(255, 0, 0)",
+  borderWidth: 1,
+  borderColor: "#fff",
+});
+
+var values = document.getElementById("values");
+var hexInput = document.getElementById("hexInput");
+
+// method to when user change the color on the color wheel it will hex value, rgb value, and hsl value for the color
+// https://iro.js.org/guide.html#color-picker-events
+colorPicker.on(["color:init", "color:change"], function(color){
+  // Show the current color in different formats
+  // Using the selected color: https://iro.js.org/guide.html#selected-color-api
+  values.innerHTML = [
+    "hex: " + color.hexString,
+    "rgb: " + color.rgbString,
+    "hsl: " + color.hslString,
+  ].join("<br>");
+  
+  hexInput.value = color.hexString;
+
+});
+
+//change color of plot only when color wheel changes (not on init)
+colorPicker.on(["color:change"], function(color) {
+   changePlotColor();
+});
+
+
+// color wheel methods for user to manual add a hex value for a particular color
+hexInput.addEventListener('change', function() {
+  colorPicker.color.hexString = this.value;
+  changePlotColor();
+});
+
+//change a trace's color based on selected radio button
+function changePlotColor() {
+    var update = {
+        'marker.color': hexInput.value,
+        'line.color': hexInput.value
+    };
+    Plotly.update(canvas, update, {}, [document.querySelector('input[name="modelS"]:checked').value - 1]);
+}
+
+//returns a color for some int h such that colors are distinct for each h
+function rainbowStop(h) {
+  let f= (n,k=(n+h*12)%12) => .5-.5*Math.max(Math.min(k-3,9-k,1),-1);  
+  let rgb2hex = (r,g,b) => "#"+[r,g,b].map(x=>Math.round(x*255).toString(16).padStart(2,0)).join('');
+  return ( rgb2hex(f(0), f(8), f(4)) );
+}
+
+// blank canvas creation
+var canvas = document.getElementById('graph');
+// data variable creation
+var data = [];
+
+//for each model, add (x, y) trace to data array, then create scatter plot
+{% for protein in proteins %}
+var trace{{forloop.counter}} = {
+    x: {{protein.x|safe}},
+    y: {{protein.y|safe}},
+   // mode come from the plotly
+    mode: 'lines+markers',
+    name: '{{protein.run_title}}'
+};
+
+// adding trace to data array
+data.push(trace{{forloop.counter}});
+{% endfor %}
+
+// main layout for the multi graph
+var layout = {
+    xaxis: {
+        title: {
+            text: '{{first.x_units}}'
+        }
+    }, 
+    yaxis: {
+        title: {
+            text: '{{first.y_units}}'
+        }
+    }
+};
+// main muti-graph without layout change
+Plotly.newPlot(canvas, data, layout);
+
+//change data/axes to (x, y)
+function changeY() {
+  //update (x, y) trace to data array for each model
+  {% for protein in proteins %}
+  var update{{forloop.counter}} = {
+    x: [{{protein.x|safe}}],
+    y: [{{protein.y|safe}}]
+  };
+  //update plot
+  Plotly.update(canvas, update{{forloop.counter}}, {}, [{{forloop.counter}} - 1]);
+  {% endfor %}
+
+  //set axes titles to x, y units
+  var layout = {
+    xaxis: {
+        title: {
+            text: '{{first.x_units}}'
+        }
+    }, 
+    yaxis: {
+        title: {
+            text: '{{first.y_units}}'
+        }
+    }
+  };
+  //update plot layout to display correct y units
+  Plotly.update(canvas, {}, layout);
+}
+
+//change data/axes to (x, y2)
+function changeY2() {
+  //update (x, y2) trace to data array for each model
+  {% for protein in proteins %}
+  var update{{forloop.counter}} = {
+    x: [{{protein.x|safe}}],
+    y: [{{protein.y2|safe}}]
+  };
+  //update plot
+  Plotly.update(canvas, update{{forloop.counter}}, {}, [{{forloop.counter}} - 1]);
+  {% endfor %}
+
+  //set axes titles to x, y2 units
+  var layout = {
+    xaxis: {
+        title: {
+            text: '{{first.x_units}}'
+        }
+    }, 
+    yaxis: {
+        title: {
+            text: '{{first.y2_units}}'
+        }
+    }
+  };
+  //update plot layout to display correct y2 units
+  Plotly.update(canvas, {}, layout);
+}
+
+//change data/axes to (x, y3)
+function changeY3() {
+  //update (x, y3) trace to data array for each model
+  {% for protein in proteins %}
+  var update{{forloop.counter}} = {
+    x: [{{protein.x|safe}}],
+    y: [{{protein.y3|safe}}]
+  };
+  //update plot
+  Plotly.update(canvas, update{{forloop.counter}}, {}, [{{forloop.counter}} - 1]);
+  {% endfor %}
+
+  //set axes titles to x, y3 units
+  var layout = {
+    xaxis: {
+        title: {
+            text: '{{first.x_units}}'
+        }
+    }, 
+    yaxis: {
+        title: {
+            text: '{{first.y3_units}}'
+        }
+    }
+  };
+  //update plot layout to display correct y3 units
+  Plotly.update(canvas, {}, layout);
+}
+
+
+</script>
+
+{% endblock %}

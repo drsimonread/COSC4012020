@@ -1,61 +1,252 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block title %}{{ specrun.run_title }}{% endblock %}
-
+{% extends 'base.html' %}
 {% block content %}
-<div class="container mt-4">
-    <h1>{{ specrun.run_title }}</h1>
-    
-    <div class="card mb-4">
-        <div class="card-body">
-            <h5 class="card-title">Experiment Details</h5>
-            <p class="card-text">{{ specrun.run_description }}</p>
-            <ul class="list-unstyled">
-                <li><strong>Run by:</strong> {{ specrun.run_user }}</li>
-                <li><strong>Run date:</strong> {{ specrun.run_date|date:"M d, Y H:i" }}</li>
-                <li><strong>Upload date:</strong> {{ specrun.upload_date|date:"M d, Y H:i" }}</li>
-                <li><strong>Data points:</strong> {{ specrun.data_points }}</li>
-                {% if specrun.protein_concentration %}
-                <li><strong>Protein concentration:</strong> {{ specrun.protein_concentration }}</li>
-                {% endif %}
-                {% if specrun.pathlength %}
-                <li><strong>Pathlength:</strong> {{ specrun.pathlength }} cm</li>
-                {% endif %}
-                {% if specrun.number_of_amino_acids %}
-                <li><strong>Amino acids:</strong> {{ specrun.number_of_amino_acids }}</li>
-                {% endif %}
-            </ul>
-        </div>
-    </div>
 
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Spectral Data</h5>
-            <div id="chart" style="height: 400px;"></div>
-        </div>
-    </div>
-</div>
+<h1>{{specrun.run_title}}</h1>
+<ul style="list-style-type:none; margin:0; padding:0;">
+<li><b>Uploaded:</b> {{specrun.upload_date}}
+{% if specrun.upload_user_string != "" %} by <a href="/cdspec/uploadedby={{specrun.upload_user_string}}">{{specrun.upload_user_string}}</a> {% endif %}</li>
+<li><b>Ran:</b> {{specrun.run_date}} by {{specrun.run_user}}</li>
+<li><b>File:</b> <a href="{{MEDIA_URL}}/{{specrun.source_file.name}}">{{specrun.source_file}}</a></li>
+<li><b>Description:</b> <textarea style="width: 100%; max-width: 100%;" readonly>{{specrun.run_description}}</textarea></li>
+<li><b>{{specrun.data_points}} Datapoints:</b> <textarea style="width: 100%; max-width: 100%;" readonly>{{specrun.data}}</textarea></li>
+<li><b>Protein Concentration:</b> {{specrun.protein_concentration|stringformat:".3G"}} mg/mL</li>
+<li><b>Pathlength:</b> {{specrun.pathlength|stringformat:".3G"}} cm</li>
+<li><b># of Amino Acids:</b> {{specrun.number_of_amino_acids}}</li>
+</ul>
 
+{# create a div to display the graph #}
+<div id="graph" width="100%" height="100%"> </div>
+
+{# button for each funtions in the python script #}
+<button onClick = "changeY()">Display {{specrun.y_units}}</button>
+{% if specrun.y2_units != None %}
+<button onClick = "changeY2()">Display {{specrun.y2_units}}</button>
+{% endif %}
+{% if specrun.y3_units != None %}
+<button onClick = "changeY3()">Display {{specrun.y3_units}}</button>
+{% endif %}
+
+{# imported javascript data for the poltly app and the colorwheel #}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+
+{# create a div for the color wheel#}
+ <div class="wrap">
+      <div class="half">
+        <div class="colorPicker"></div>
+        <span class="title">Drag the circle inside the color wheels.</span> 
+      </div>
+      <div class="half readout">
+        <span class="title">Selected Color:</span>
+        <div id="values"></div>
+        <input id="hexInput"></input> 
+      </div>
+    </div>
+
+{% if perms.cdspec.can_edit %}
+<br>
+<h2>Admin Controls:</h2>
+<form action="{% url 'cdspec:edit' specrun.id %}">
+    {% csrf_token %}
+    <input class="btn btn-primary" type="submit" name="edit" value="Edit" />
+</form>
+<br>
+{% endif %}
+
+{% if perms.cdspec.can_delete %}
+<form action="{%url 'cdspec:delete' specrun.id%}" method="post">
+    {% csrf_token %}
+    <input class="btn btn-primary" type="submit" onclick="return confirm('Are you sure you want to remove this file?')" name="delete" value="Delete" />
+</form>
+<br>
+{% endif %}
+
+
 <script>
-    var xData = {{ x|safe }};
-    var yData = {{ y|safe }};
-    
-    var trace = {
-        x: xData,
-        y: yData,
-        type: 'scatter',
-        mode: 'lines',
-        name: 'CD [mdeg]'
+// blank canvas creation
+var canvas = document.getElementById('graph');
+
+
+// Create a new color picker instance
+// https://iro.js.org/guide.html#getting-started
+var colorPicker = new iro.ColorPicker(".colorPicker", {
+  // color picker options
+  // Option guide: https://iro.js.org/guide.html#color-picker-options
+  width: 280,
+  color: "rgb(255, 0, 0)",
+  borderWidth: 1,
+  borderColor: "#fff",
+});
+
+var values = document.getElementById("values");
+var hexInput = document.getElementById("hexInput");
+
+// method to when user change the color on the color wheel it will hex value, rgb value, and hsl value for the color
+// https://iro.js.org/guide.html#color-picker-events
+colorPicker.on(["color:init", "color:change"], function(color){
+  // Show the current color in different formats
+  // Using the selected color: https://iro.js.org/guide.html#selected-color-api
+  values.innerHTML = [
+    "hex: " + color.hexString,
+    "rgb: " + color.rgbString,
+    "hsl: " + color.hslString,
+  ].join("<br>");
+  
+  hexInput.value = color.hexString;
+});
+
+//change color of plot only when color wheel changes (not on init)
+colorPicker.on(["color:change"], function(color) {
+   changePlotColor();
+});
+
+// color wheel methods for user to manual add a hex value for a particular color
+hexInput.addEventListener('change', function() {
+  colorPicker.color.hexString = this.value;
+  changePlotColor();
+});
+
+
+
+//plot (x, y) data as scatter plot
+//create trace of the protein data
+//more found in https://plotly.com/javascript/line-and-scatter/
+var trace = { 
+    x: {{x|safe}},
+    y: {{y|safe}},
+    mode: 'lines+markers',
+    // change color of marker and line for plotly 
+    marker: {
+        color: hexInput.value 
+          
+    },
+    line: {
+        color: hexInput.value  
+    }
+};
+//store the plotly trace in the variable data
+var data = [trace];
+
+// main layout of the graph without changing the y axis and x axis 
+var layout = {
+    showlegend: false,
+    xaxis: {
+        title: {
+            text: '{{specrun.x_units}}'
+        }
+    }, 
+    yaxis: {
+        title: {
+            text: '{{specrun.y_units}}'
+        }
+    }
+}; 
+
+// main graph without latout change
+Plotly.newPlot(canvas, data, layout);
+
+//change plot color to current hex input
+function changePlotColor() {
+    var update = {
+        'marker.color': hexInput.value,
+        'line.color': hexInput.value
     };
-    
-    var layout = {
-        title: 'CD Spectrum',
-        xaxis: { title: '{{ specrun.x_units|default:"Wavelength" }}' },
-        yaxis: { title: '{{ specrun.y_units|default:"CD [mdeg]" }}' }
+    Plotly.update(canvas, update, {});
+}
+
+//change data/axes to (x, y)
+function changeY() {
+    //delete current data
+    Plotly.deleteTraces(canvas, 0);
+    //add trace of x,y data
+    Plotly.addTraces(canvas, {
+        x: {{x|safe}},
+        y: {{y|safe}},
+        // mode come from the plotly 
+        mode: 'lines+markers',
+        // changes of color for plotly marker and line with the color wheel implementation 
+         marker: {
+            color: hexInput.value 
+           
+        },
+        line: {
+            color: hexInput.value 
+        }
+    });
+    //change y axis title to display y units
+    var layout_update = {
+        yaxis: {
+            title: {
+                text: '{{specrun.y_units}}'
+            }
+        }
     };
-    
-    Plotly.newPlot('chart', [trace], layout);
+    //built in plotly methods to update the graph
+    Plotly.update(canvas, {}, layout_update);
+}
+
+//change data/axes to (x, y2)
+function changeY2() {
+   //deleting the old trace of the canvas 
+    Plotly.deleteTraces(canvas, 0);
+    //add trace of x,y2 data
+    Plotly.addTraces(canvas, {
+        x: {{x|safe}},
+        y: {{y2|safe}},
+       // mode come from the plotly 
+        mode: 'lines+markers',
+        // changes of color for plotly marker and line with the color wheel implementation 
+         marker: {
+            color: hexInput.value  
+        },
+        line: {
+            color: hexInput.value  
+        }
+    });
+     //change y axis title to display y2 units
+    var layout_update = {
+        yaxis: {
+            title: {
+                text: '{{specrun.y2_units}}'
+            }
+        }
+    };
+    //built in plotly methods to update the graph
+    Plotly.update(canvas, {}, layout_update);
+}
+
+//change data/axes to (x, y3)
+function changeY3() {
+    //deleting the old trace of the canvas
+    Plotly.deleteTraces(canvas, 0);   
+    //add trace of x,y3 data
+    Plotly.addTraces(canvas, {
+        x: {{x|safe}},
+        y: {{y3|safe}},
+        // mode come from the plotly 
+        mode: 'lines+markers',
+        // changes of color for plotly marker and line with the color wheel implementation  
+         marker: {
+            color: hexInput.value 
+        },
+        line: {
+            color: hexInput.value 
+        }
+    });
+     //change y axis title to display y3 units
+    var layout_update = {
+        yaxis: {
+            title: {
+                text: '{{specrun.y3_units}}'
+            }
+        }
+    };
+    //built in plotly methods to update the graph
+    Plotly.update(canvas, {}, layout_update);
+}
 </script>
+
+
 {% endblock %}
