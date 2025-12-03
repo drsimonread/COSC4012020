@@ -16,7 +16,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Key used to pair with google and allows for google authentication
 # Sign in with google (needs to be changed to special email when released)
 # (UPDATE ON RELEASE)
-SECRET_KEY = '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'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # When you go to a page with an error, when enabled this displays
@@ -136,7 +136,7 @@ AUTHENTICATION_BACKENDS = [
 AUTH_USER_MODEL = "users.User"
 
 # The site ID the site these settings apply to in the django admin
-SITE_ID = 4 # (UPDATE ON RELEASE), likely needs changed to 3
+SITE_ID = 4 # (UPDATE ON RELEASE)
 
 # PASSWORDS
 # ------------------------------------------------------------------------------
@@ -208,8 +208,8 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "bedinger@smcm.edu" # What email sends the confirmation email (UPDATE ON RELEASE)
-EMAIL_HOST_PASSWORD = "pnnvmfrufmpbwcxh" # Needs to be gotten from host user email (UPDATE ON RELEASE)
+EMAIL_HOST_USER = "" # What email sends the confirmation email (UPDATE ON RELEASE)
+EMAIL_HOST_PASSWORD = "" # Needs to be gotten from host user email (UPDATE ON RELEASE)
 # Do NOT use your email password, get an email app password from google security
 # https://itsupport.umd.edu/itsupport?id=kb_article_view&sysparm_article=KB0015112
 DEFAULT_FROM_EMAIL = "CD Spec Viewer Web <noreply@example.com>" # Email address the
