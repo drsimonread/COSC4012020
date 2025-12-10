@@ -1,0 +1,60 @@
+# Setting up Circular Dichroism Spectrometer (CDSpec) on your Google Cloud VM
+## CDSpec Installation
+-	**Configuring your Virtual Machine for git, python, and other dependencies**
+	-	cd /home/shared_workspace
+	-	sudo apt update
+	-	sudo apt upgrade -y
+	-	sudo apt install git
+	-	git config --global user.name `github-username`
+		-	Put in your GitHub username
+	-	git config --global user.email `github-email`
+		-	Put in your GitHub email
+	-	git init
+	-	git clone https://github.com/drsimonread/COSC4012020
+	-	sudo apt-get install python3-pip
+	  -	Y to Continue
+	-	sudo apt install python3-django
+		-	Y to Continue
+	-	sudo apt install libapache2-mod-wsgi-py3
+		-	Y to Continue
+	-	sudo apt install mariadb-server
+		-	Y to Continue
+	-	sudo mysql_secure_installation
+		-	No for current password
+		-	N for switch to unix-socket
+		-	Y to set new root password
+		- Set root password to `software_startup_simulator`
+		- Y to remove anonymous users
+		- Y to disallow remote root login
+		- Y to remove test database
+		- Y to reload data table privileges
+	- sudo apt install -y postgresql
+	  -	Y to Continue
+
+-	**Installing your CDSpec Requirements**
+	-	cd /home/shared_workspace/COSC4012020/cd_spec_viewer_web
+	-	pip install -r requirements.txt
+	-	curl -sS https://bootstrap.pypa.io/get-pip.py | python3
+-	**Configruing Postgresql**
+	-	sudo systemctl status postgresql
+	-	Press CTRL+C to go back to cmd line prompt
+	-	sudo -i -u postgres
+		-	psql
+			-	ALTER USER postgres PASSWORD 'PASS';
+			-	\q
+		-	exit
+	-	sudo nano /etc/postgresql/*/main/pg_hba.conf
+  -	Navigate to the line:
+    -	Database administrative login by Unix domain socket
+    -	local   all             postgres                                peer
+    -	Change “peer” to “md5” without quotations
+    	- 	CTRL+X
+    	-	Y
+    	-	Enter
+    	-	sudo systemctl restart postgresql
+-	**Running the CDSpec Website**
+	-	python3 manage.py makemigrations
+	-	python3 manage.py migrate
+	-	python3 manage.py runserver
+		-	If you’re using Visual Studio Code, this should give you a prompt that says “Your application running on port 8000 is available”. Click on “Open in Browser”
+		-	Alternatively, enter “http://127.0.0.1:8000/” in your browser
