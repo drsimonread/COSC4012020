@@ -250,7 +250,7 @@ In your second virtual machine do the following:
    5. git config \--global user.name "\*\*\*\*" (between “” needs to be the github username”  
    6. git config \--global user.email "\*\*\*\*" (between the “” needs to be the github email address”  
    7. git init  
-   8. git clone [https://github.com/swbn1/CDSpecCollab\_COSC4012020-FA24](https://github.com/swbn1/CDSpecCollab_COSC4012020-FA24)  
+   8. git clone [https://github.com/drsimonread/COSC4012020](https://github.com/drsimonread/COSC4012020)  
    9. sudo apt-get install python3-pip  
       1. Press y and then enter when prompted  
    10. sudo apt install python3-django  
