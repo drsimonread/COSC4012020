@@ -206,7 +206,7 @@ In your first virtual machine do the following:
    9. git config \--global user.name "\*\*\*\*" (between “” needs to be the github username)  
    10. git config \--global user.email "\*\*\*\*" (between the “” needs to be the github email address)  
    11. git init  
-   12. git clone [https://github.com/drsimonread/COSC4012020](https://github.com/drsimonread/COSC4012022)  
+   12. git clone [https://github.com/drsimonread/ChesapeakeCommunityConnect](https://github.com/drsimonread/ChesapeakeCommunityConnect)  
    13. python3.10 \-m ensurepip  
    14. python3.10 \-m pip install \--upgrade pip   
    15. sudo apt install libapache2-mod-wsgi-py3  
