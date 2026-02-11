@@ -222,7 +222,7 @@ In your first virtual machine do the following:
        6. Select Y to reload data table privileges  
    18. sudo apt install \-y postgresql  
 2. **Installing your CCC Requirements**  
-   1. cd /home/shared\_workspace/ChesapeakeCommunityConnect-FA24/cccSite  
+   1. cd /home/shared_workspace/ChesapeakeCommunityConnect/cccSite
       1. If you were working on this 3/19/2025 or previously, run   
          1. git pull origin main  
          2. git pull origin development  
