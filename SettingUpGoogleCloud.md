@@ -36,7 +36,7 @@
 11. In the left panel, select OS and Storage  
 12. Select Change.  
 13. Under Operating System select “Ubuntu”  
-14. Ensure the Version is Ubuntu 20.04 LTS.  
+14. Ensure the Version is Ubuntu 22.04 LTS x86/64.  
 15. Click Select  
 16. Click on Networking in the left panel  
 17. Under the Firewall heading check the boxes “Allow HTTP Traffic” and “Allow HTTPS Traffic”  
