@@ -269,7 +269,7 @@ In your second virtual machine do the following:
    14. sudo apt install postgresql  
        1. Press y and then enter when prompted  
 2. **Installing your CDSpec requirements**  
-   1. cd CDSpecCollab\_COSC4012020-FA24/Deployed\\ Version/cd\_spec\_viewer\_web/  
+   1. cd /home/shared_workspace/COSC4012020/cd_spec_viewer_web
    2. pip install \-r requirements.txt  
    3. curl \-sS https://bootstrap.pypa.io/get-pip.py | python3  
    4. pip install whitenoise  
