@@ -236,7 +236,7 @@ In your first virtual machine do the following:
       1. If you’re using Visual Studio Code, this should give you a prompt that says “Your application running on port 8080 is available”. Click on “Open in Browser”  
       2. Alternatively, enter “[http://127.0.0.1:8080/](http://127.0.0.1:8080/)” in your browser  
 4. **Setting up YOUR working environment**  
-   1. 
+   1. Go [here](https://github.com/drsimonread/COSC4012020/blob/master/Issue%20branch%20Instructions.txt) to set up a branch
 
 In your second virtual machine do the following:
 
@@ -292,7 +292,7 @@ In your second virtual machine do the following:
          3. Enter  
          4. sudo systemctl restart postgresql  
 4. **To run the website**  
-   1. cd shared\_workspace/CDSpecCollab\_COSC4012020-FA24/Deployed\\ Version/cd\_spec\_viewer\_web/  
+   1. cd shared\_workspace/CDSpecCollab\_COSC4012020/cd\_spec\_viewer\_web/  
    2. python3 manage.py makemigrations  
    3. python3 manage.py migrate  
    4. python3 manage.py runserver  
