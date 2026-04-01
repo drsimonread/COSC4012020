@@ -33,5 +33,5 @@ tzdata==2025.1
 uritemplate==4.1.1
 urllib3==2.2.3
 wheel==0.45.1
+crispy-bootstrap4==2025.6
 whitenoise
-crispy-bootstrap4
