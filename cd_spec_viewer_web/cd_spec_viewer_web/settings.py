@@ -6,10 +6,11 @@ The parts of this file that need updating will be marked
 with (UPDATE ON RELEASE)
 """
 import os
+from pathlib import Path
 
 # Paths used for file navigation by the program, setting the base directory
 # and then the program will navigate from there automatiocally
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = str(Path(__file__).resolve().parent.parent)
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -86,7 +87,7 @@ ROOT_URLCONF = 'cd_spec_viewer_web.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR + '/templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             "context_processors": [
