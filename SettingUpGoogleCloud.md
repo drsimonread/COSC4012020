@@ -8,7 +8,7 @@
 
 1. Claim your Education Credits as in the email you received.  
    You will need to use your smcm.edu account for all your interactions with the Google Cloud Platform.  
-2. Goto [https://console.cloud.google.com](https://console.cloud.google.com) .  
+2. Go [here](https://console.cloud.google.com) to set up google cloud.  
 3. Tick the box to accept the Terms of Service.  
 4. Click Agree and Continue.  
 5. Click Select a Project.  
@@ -67,7 +67,7 @@ Remember to Stop your instance every time you have finished working with it, or 
 
 ## Installing Visual Studio Code
 
-1. Download Visual Studio Code from [https://code.visualstudio.com/download](https://code.visualstudio.com/download) and follow the installation instructions.
+1. Download [Visual Studio Code](https://code.visualstudio.com/download) and follow the installation instructions.
 
 ## Installing Visual Studio Code Extensions
 
@@ -89,11 +89,11 @@ You should already have SSH on your computer (applicable to macbook, windows, an
 
 ### Installing PowerShell on Windows
 
-PowerShell should already be installed on your computer, if it is not then follow the instructions at [https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.5](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.5)
+PowerShell should already be installed on your computer, if it is not then follow the [instructions here](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.5)
 
 ### Installing the OpenSSH client on Windows
 
-The OpenSSH client should have been installed when you installed the Remote Development plug-in for Visual Studio Code.  If that is not the case then follow the instructions at [https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh\_install\_firstuse?tabs=gui\&pivots=windows-server-2025](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=gui&pivots=windows-server-2025)
+The OpenSSH client should have been installed when you installed the Remote Development plug-in for Visual Studio Code.  If that is not the case then follow the [instructions here] (https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=gui&pivots=windows-server-2025)
 
 ### Testing your OpenSSH installation
 
