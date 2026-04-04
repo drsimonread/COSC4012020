@@ -7,14 +7,15 @@
     <style>
     .Instruction {
         text-align: justify; /* Justify text alignment for instructions */
-        background-color: lightblue; /* Light blue background for the instruction section */
+        background-color: #e7f6ff; /* Light blue background for the instruction section */
     }
+
     </style>
     </head>
     <body>
-        <h1 sytle ="text-align:center">CD Spec Viewer About Page</h1> <!-- Page header (with a typo in the 'style' attribute) -->
-        <p sytle ="text-align:center">This is a spectrometer project by Dr. Sherrer.</p> <!-- Introductory text (with a typo in the 'style' attribute) -->
-        <p sytle ="text-align:center">This project was developed by students taking the COSC Capstone course at St. Mary's College of Maryland during the Fall 2020 and Spring 2021 semesters. We have created this website for people to upload and view their CD Spectrometer runs.</p> <!-- Description of the project (with a typo in the 'style' attribute) -->
+        <h1 style ="text-align:center">CD Spec Viewer About Page</h1> <!-- Page header (with a typo in the 'style' attribute) -->
+        <p style ="text-align:center">This is a spectrometer project by Dr. Sherrer.</p> <!-- Introductory text (with a typo in the 'style' attribute) -->
+        <p style ="text-align:center">This project was developed by students taking the COSC Capstone course at St. Mary's College of Maryland during the Fall 2020 and Spring 2021 semesters. We have created this website for people to upload and view their CD Spectrometer runs.</p> <!-- Description of the project (with a typo in the 'style' attribute) -->
         <div class ="Instruction"> <!-- Instruction section -->
             <h3 style ="font-size:18px">Viewing CD Spectrometer runs:</h3> <!-- Heading for viewing CD spectrometer runs -->
             <p>A table view listing all of the runs can be found by clicking on the <a href="{% url 'cdspec:index' %}">Index</a> tab on the top of the page.</p> <!-- Link to the index page -->
@@ -23,7 +24,7 @@
 
             {% if perms.cdspec.can_edit %}
             <!-- Check if the user has permission to edit -->
-            <p>Additionally, as an Administrator, you have the ability to edit/delete individual runs. The Administrator controls are located at the bottom of the detailed view page.</p>
+            <p >Additionally, as an Administrator, you have the ability to edit/delete individual runs. The Administrator controls are located at the bottom of the detailed view page.</p>
             {% endif %} <!-- End permission check for editing -->
 
             <h3 style ="font-size:18px">Uploading runs to the database:</h3> <!-- Heading for uploading runs -->
