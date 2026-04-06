@@ -17,6 +17,7 @@ from cdspec.util import handle_file_upload, Units, graph_format
 from django.db.models import Q
 
 # Create your views here.
+#The file contains all the views (not ideal)
 
 #Index View, a list of last ten objects
 class IndexView(generic.ListView):
@@ -129,13 +130,15 @@ def detail(request, pk):
 
 #Multi View
 def multi(request, pks):
+    
 
     user = request.user
-
+    #if there are no runs selected, give message that they need to select
     if pks == "":
        messages.info(request, "Select table rows to use the Multi-Graph function")
        return HttpResponseRedirect('/cdspec/')
 
+    #check permissions for each of the tables
     proteins = []
     for pk in pks.split('/')[:-1]:
         obj = get_object_or_404(SpecRun, pk=pk)
@@ -154,7 +157,7 @@ def multi(request, pks):
               messages.info(request, "You do not have permission to access this spec model")
               return HttpResponseRedirect('/cdspec/')
 
-    #check if the models have the same units
+    #check if the models have the same units, if fails it sends back to index
     x_units = proteins[0].x_units
     y_units = proteins[0].y_units
     y2_units = proteins[0].y2_units
@@ -170,6 +173,14 @@ def multi(request, pks):
         output_object.append({'run_title' : protein.run_title, 'model' : protein, 'x' : graph_format(protein.data, 0), 'y' : graph_format(protein.data, 1), 'y2' : graph_format(protein.data, 2),
         'y3' : (graph_format(protein.data, 3) if protein.y3_units is not None else None)});
 
+    #based on the definition of the render function, 'cdspec/multi.html' is the template that the data is being sent to
+    #and where the change to edit the graph would happen. I CAN NOT FIND THE TEMPLATE. 
+    #if I truly cannot find how to fix this, the necessary changes are to make sure that there is more distinction
+    #than just color when rendering multiple lines on the same graph- possible solutions would be to:
+    #1: change the style of the line (dashed, dotted, etc)
+    #2: add markers to the lines (circles, squares, etc)
+    #3: limit the number of lines that can be on the same graph and define default colors that have high contrast in both hue and lightness
+    #the official guideline is at https://www.w3.org/TR/WCAG22/#use-of-color if future people need
     return render(request, 'cdspec/multi.html', {'proteins': output_object, 'pks': pks, 'first': proteins[0]})
 
 # Table List View
