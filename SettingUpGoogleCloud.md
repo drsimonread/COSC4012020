@@ -93,7 +93,7 @@ PowerShell should already be installed on your computer, if it is not then follo
 
 ### Installing the OpenSSH client on Windows
 
-The OpenSSH client should have been installed when you installed the Remote Development plug-in for Visual Studio Code.  If that is not the case then follow the [instructions here] (https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=gui&pivots=windows-server-2025)
+The OpenSSH client should have been installed when you installed the Remote Development plug-in for Visual Studio Code.  If that is not the case then follow the [instructions here](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=gui&pivots=windows-server-2025)
 
 ### Testing your OpenSSH installation
 
