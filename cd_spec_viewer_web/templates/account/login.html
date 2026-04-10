@@ -28,6 +28,7 @@
             {% blocktrans with site.name as site_name %}
             Please sign in with one of your existing third party accounts. Or, 
             <a href="{{ signup_url }}">sign up</a> for a {{ site_name }} account and sign in below:
+            <p>Fields marked with (*) are required</p>
             {% endblocktrans %}
             <!-- Provide options for signing in via social accounts or creating a new account -->
         </p>
@@ -55,6 +56,7 @@
             {% blocktrans %}
             If you have not created an account yet, then please 
             <a href="{{ signup_url }}">sign up</a> first.
+            <p> Fields marked with (*) are required.</p>
             {% endblocktrans %}
             <!-- Encourage the user to create an account if none exists -->
         </p>
