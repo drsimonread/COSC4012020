@@ -179,7 +179,6 @@ def multi(request, pks):
     #than just color when rendering multiple lines on the same graph- possible solutions would be to:
     #1: change the style of the line (dashed, dotted, etc)
     #2: add markers to the lines (circles, squares, etc)
-    #3: limit the number of lines that can be on the same graph and define default colors that have high contrast in both hue and lightness
     #the official guideline is at https://www.w3.org/TR/WCAG22/#use-of-color if future people need
     return render(request, 'cdspec/multi.html', {'proteins': output_object, 'pks': pks, 'first': proteins[0]})
 
