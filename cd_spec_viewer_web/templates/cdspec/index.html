@@ -28,7 +28,8 @@
 
 </div>
 
-    <table class="table table-bordered table-hover align-middle">
+    <div class="table-responsive">
+<table class="table table-bordered table-hover align-middle">
         <thead class="table-light">
             <tr>
                 <th scope="col">Molecule Name</th>
@@ -59,7 +60,7 @@
             {% endfor %}
         </tbody>
     </table>
-
+</div>
     {% if latest_runs|length == 0 %}
         <div class="alert alert-warning mt-3">
             No CD spectroscopy datasets available.
