@@ -23,4 +23,7 @@ urlpatterns = [
     # /cdspec/ table data
     re_path(r'^spec_run_data/$', SpecRunJson.as_view(), name="spec_run_list_json"),
     path('spec_run_data/<str:user>/', SpecRunJson.as_view(), name="spec_run_list_json_user"),
+
+    # ⭐ NEW multi-select URL
+    path('multi-select/', views.multi_select, name='multi_select'),
 ]

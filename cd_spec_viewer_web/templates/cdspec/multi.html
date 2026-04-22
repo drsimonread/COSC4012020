@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+
+    <h1 class="title">Select Multiple Runs</h1>
+    <p class="subtitle">Choose one or more runs below.</p>
+
+    <!-- ⭐ FIXED: Correct URL name -->
+    <form id="multiSelectForm" method="get" action="{% url 'cdspec:multi_select' %}">
+      <div class="box">
+
+        {% if runs %}
+          <label class="label">Available Runs</label>
+
+          <div class="select is-multiple is-fullwidth">
+            <select name="run_ids" multiple size="10">
+              {% for run in runs %}
+                <option value="{{ run.id }}">
+                  {{ run.run_title }} — {{ run.upload_date|date:"Y-m-d H:i" }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+
+        {% else %}
+          <p>No runs available.</p>
+        {% endif %}
+
+      </div>
+
+      <div class="buttons">
+        <a href="{% url 'cdspec:index' %}" class="button is-light">Back</a>
+        <button type="submit" class="button is-primary">Continue</button>
+      </div>
+
+    </form>
+
+  </div>
+</section>
+{% endblock %}
