@@ -16,8 +16,6 @@ from cdspec.util import handle_file_upload, Units, graph_format
 
 from django.db.models import Q
 
-# Create your views here.
-#The file contains all the views (not ideal)
 
 #Index View, a list of last ten objects
 class IndexView(generic.ListView):
@@ -123,59 +121,6 @@ def detail(request, pk):
     })
 
 
-#Multi View (existing)
-def multi(request, pks):
-    user = request.user
-
-    if pks == "":
-        messages.info(request, "Select table rows to use the Multi-Graph function")
-        return HttpResponseRedirect('/cdspec/')
-
-    proteins = []
-    for pk in pks.split('/')[:-1]:
-        obj = get_object_or_404(SpecRun, pk=pk)
-
-        if user.has_perm('cdspec.can_view_all'):
-            proteins.append(obj)
-        elif user.has_perm('cdspec.can_view_student'):
-            if obj.visible_student or obj.visible_public:
-                proteins.append(obj)
-        else:
-            if obj.visible_public:
-                proteins.append(obj)
-            else:
-                messages.info(request, "You do not have permission to access this spec model")
-                return HttpResponseRedirect('/cdspec/')
-
-    x_units = proteins[0].x_units
-    y_units = proteins[0].y_units
-    y2_units = proteins[0].y2_units
-    y3_units = proteins[0].y3_units
-
-    for protein in proteins:
-        if protein.x_units != x_units or protein.y_units != y_units or \
-           protein.y2_units != y2_units or protein.y3_units != y3_units:
-            messages.info(request, 'Multi-graph failed: graphs have different axes')
-            return HttpResponseRedirect('/cdspec/')
-
-    output_object = []
-    for protein in proteins:
-        output_object.append({
-            'run_title': protein.run_title,
-            'model': protein,
-            'x': graph_format(protein.data, 0),
-            'y': graph_format(protein.data, 1),
-            'y2': graph_format(protein.data, 2),
-            'y3': (graph_format(protein.data, 3) if protein.y3_units is not None else None)
-        })
-
-    return render(request, 'cdspec/multi.html', {
-        'proteins': output_object,
-        'pks': pks,
-        'first': proteins[0]
-    })
-
-
 # Table List View
 class SpecRunJson(BaseDatatableView):
     model = SpecRun
@@ -211,13 +156,74 @@ def delete(request, pk):
         return HttpResponseRedirect("/cdspec/")
 
 
-# ⭐ NEW MULTI‑SELECT VIEW (added cleanly at the bottom)
+# NEW MULTI VIEW (comma-separated IDs)
+def multi(request, pks):
+    user = request.user
+
+    if not pks:
+        messages.info(request, "Select runs to use the Multi-Graph function")
+        return HttpResponseRedirect('/cdspec/')
+
+    try:
+        id_list = [int(pk) for pk in pks.split(",") if pk.strip()]
+    except ValueError:
+        messages.info(request, "Invalid run selection.")
+        return HttpResponseRedirect('/cdspec/')
+
+    proteins = []
+    for pk in id_list:
+        obj = get_object_or_404(SpecRun, pk=pk)
+
+        if user.has_perm('cdspec.can_view_all'):
+            proteins.append(obj)
+        elif user.has_perm('cdspec.can_view_student'):
+            if obj.visible_student or obj.visible_public:
+                proteins.append(obj)
+        else:
+            if obj.visible_public:
+                proteins.append(obj)
+            else:
+                messages.info(request, "You do not have permission to access this spec model")
+                return HttpResponseRedirect('/cdspec/')
+
+    x_units = proteins[0].x_units
+    y_units = proteins[0].y_units
+    y2_units = proteins[0].y2_units
+    y3_units = proteins[0].y3_units
+
+    for protein in proteins:
+        if (protein.x_units != x_units or
+            protein.y_units != y_units or
+            protein.y2_units != y2_units or
+            protein.y3_units != y3_units):
+            messages.info(request, 'Multi-graph failed: graphs have different axes')
+            return HttpResponseRedirect('/cdspec/')
+
+    output_object = []
+    for protein in proteins:
+        output_object.append({
+            'run_title': protein.run_title,
+            'model': protein,
+            'x': graph_format(protein.data, 0),
+            'y': graph_format(protein.data, 1),
+            'y2': graph_format(protein.data, 2),
+            'y3': (graph_format(protein.data, 3) if protein.y3_units is not None else None)
+        })
+
+    return render(request, 'cdspec/multi.html', {
+        'proteins': output_object,
+        'pks': pks,
+        'first': proteins[0]
+    })
+
+
+# MULTI SELECT VIEW (checkbox page)
 def multi_select(request):
     runs = SpecRun.objects.all()
     selected_ids = request.GET.getlist("run_ids")
 
     if selected_ids:
         ids_param = ",".join(selected_ids)
-        return redirect("cdspec:multi", pks=ids_param + "/")
+        return redirect("cdspec:multi", pks=ids_param)
 
     return render(request, "cdspec/multi.html", {"runs": runs})

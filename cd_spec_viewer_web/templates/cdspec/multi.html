@@ -8,21 +8,21 @@
     <h1 class="title">Select Multiple Runs</h1>
     <p class="subtitle">Choose one or more runs below.</p>
 
-    <!-- ⭐ FIXED: Correct URL name -->
-    <form id="multiSelectForm" method="get" action="{% url 'cdspec:multi_select' %}">
+    <form method="get" action="{% url 'cdspec:multi_select' %}">
       <div class="box">
 
         {% if runs %}
           <label class="label">Available Runs</label>
 
-          <div class="select is-multiple is-fullwidth">
-            <select name="run_ids" multiple size="10">
-              {% for run in runs %}
-                <option value="{{ run.id }}">
-                  {{ run.run_title }} — {{ run.upload_date|date:"Y-m-d H:i" }}
-                </option>
-              {% endfor %}
-            </select>
+          <div class="content">
+            {% for run in runs %}
+              <label class="checkbox">
+                <input type="checkbox" name="run_ids" value="{{ run.id }}">
+                <strong>{{ run.run_title }}</strong>
+                <span class="has-text-grey">— {{ run.upload_date|date:"Y-m-d H:i" }}</span>
+              </label>
+              <br>
+            {% endfor %}
           </div>
 
         {% else %}
